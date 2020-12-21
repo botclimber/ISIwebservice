@@ -637,6 +637,51 @@
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#auth" onclick="pagination('auth')">Auth</a>
         </li>
+        <li class="nav-header" data-group="User"><a href="#">Recipes</a></li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('s_recipe')">Search Recipes</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('d_recipe')">Recipe Detailed Info</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('b_nutrients')">Recipes by Nutrients</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('b_ingredients')">Recipe by Ingredients</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('rand_recipe')">Random Recipe</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('insert_recipe')">Insert Recipe</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('upd_recipe')">Update Recipe</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('del_recipe')">Delete Recipe</a>
+        </li>
+
+        <li class="nav-header" data-group="User"><a href="#">Ingredients</a></li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('s_ingredient')">Search Ingredients</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('d_ingredient')">Ingredient Detailed Info</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('cv_amounts')">Convert Amounts</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('insert_ingredient')">Insert Ingredient</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('upd_ingredient')">Update Ingredient</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#auth" onclick="pagination('del_ingredient')">Delete Ingredient</a>
+        </li>
   </ul>
 </nav>
 </div>
@@ -666,6 +711,1697 @@
 
 <!-- Auth  -->
   <section style="display:none;" id="auth">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (AUTH) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- search recipe -->
+  <section style="display:none;" id="s_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (search recipe) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- detailed recipe info  -->
+  <section style="display:none;" id="d_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (recipe info) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- b_nutrients -->
+  <section style="display:none;" id="b_nutrients">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (by Nutrients) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- b_ingredients  -->
+  <section style="display:none;" id="b_ingredients">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (b_ingredients) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- reandom_recipe  -->
+  <section style="display:none;" id="rand_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (reandom recipe) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- insert_recipe  -->
+  <section style="display:none;" id="insert_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (insert recipe) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- update recipe -->
+  <section style="display:none;" id="upd_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON ( upd_recipe) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- delete recipe  -->
+  <section style="display:none;" id="del_recipe">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (del_recipe) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- search ingredients -->
+  <section style="display:none;" id="s_ingredient">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (search ingredients) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- detailed ingredient info  -->
+  <section style="display:none;" id="d_ingredient">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (recipe info) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- insert ingredient  -->
+  <section style="display:none;" id="insert_ingredient">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (insert ingredient) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- update ingredient -->
+  <section style="display:none;" id="upd_ingredient">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Update Ingredient</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (upd_ingredient) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- delete ingredient  -->
+  <section style="display:none;" id="d_ingredient">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Authentication</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+
+      <h2>Parameter</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 20%">Field</th>
+            <th style="width: 20%">Type</th>
+            <th style="width: 20%">Description</th>
+            <th style="width: 20%">required</th>
+            <th style="width: 20%">default value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>name</td>
+            <td>string</td>
+            <td>user personal name</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>email</td>
+            <td>string</td>
+            <td>user personal email</td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Success 200</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+            <th style="width: 10%">Type</th>
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">apiKey</td>
+              <td>
+                String
+              </td>
+            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
+    </span><span class="pun">{</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>
+
+      <!--<h2>Error 4xx</h2>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 30%">Field</th>
+
+            <th style="width: 70%">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="code">UserNotFound</td>
+            <td>
+            <p>The <code>id</code> of the User was not found.</p>
+
+
+                        </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
+    </span><span class="pun">}</span></code></pre>
+        </div>
+      </div>-->
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (delete ingredient) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+  <!-- Amount explanation -->
+  <section style="display:none;" id="cv_amounts">
       <div id="api-User-GetUser">
 
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
@@ -711,9 +2447,6 @@
         </tbody>
       </table>
 
-
-
-
       <h2>Success 200</h2>
       <table>
         <thead>
@@ -748,8 +2481,6 @@
     </span><span class="pun">}</span></code></pre>
         </div>
       </div>
-
-
 
       <!--<h2>Error 4xx</h2>
       <table>
@@ -787,15 +2518,12 @@
         </div>
       </div>-->
 
-
-
-
-
-
   </article>
 
       </div>
   </section>
+<!-- END PAGE (AMOUNT explanation) -->
+
 
 
 </div>
@@ -815,7 +2543,7 @@
 <script>
 
 function pagination(id){
-  var ids = ['intro','auth'];
+  var ids = ['intro','auth','cv_amounts','s_recipe','d_ingredient','b_nutrients','b_ingredients','rand_recipe','insert_recipe','upd_recipe','del_recipe','s_ingredient','d_ingredient','insert_ingredient','upd_ingredient','del_ingredient'];
 
     for(var i = 0; i < ids.length ; i++){
       if( !id.localeCompare(ids[i])) document.getElementById(ids[i]).style.display = "";
