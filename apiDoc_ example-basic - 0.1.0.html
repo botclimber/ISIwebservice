@@ -632,20 +632,20 @@
   <ul class="sidenav nav nav-list">
           <li class="nav-header" data-group="User"><a href="#">QUICK RECIPES api</a></li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#intro" onclick="pagination('intro')">Intro</a>
+          <a href="#" onclick="pagination('intro')">Intro</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('auth')">Auth</a>
+          <a href="#" onclick="pagination('auth')">Auth</a>
         </li>
         <li class="nav-header" data-group="User"><a href="#">Recipes</a></li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('s_recipe')">Search Recipes</a>
+          <a href="#" onclick="pagination('s_recipe')">Search Recipes</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('d_recipe')">Recipe Detailed Info</a>
+          <a href="#" onclick="pagination('d_recipe')">Recipe Detailed Info</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('b_nutrients')">Recipes by Nutrients</a>
+          <a href="#" onclick="pagination('b_nutrients')">Recipes by Nutrients</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#auth" onclick="pagination('b_ingredients')">Recipe by Ingredients</a>
@@ -657,30 +657,30 @@
           <a href="#auth" onclick="pagination('insert_recipe')">Insert Recipe</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('upd_recipe')">Update Recipe</a>
+          <a href="#" onclick="pagination('upd_recipe')">Update Recipe</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('del_recipe')">Delete Recipe</a>
+          <a href="#" onclick="pagination('del_recipe')">Delete Recipe</a>
         </li>
 
         <li class="nav-header" data-group="User"><a href="#">Ingredients</a></li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('s_ingredient')">Search Ingredients</a>
+          <a href="#" onclick="pagination('s_ingredient')">Search Ingredients</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('d_ingredient')">Ingredient Detailed Info</a>
+          <a href="#" onclick="pagination('d_ingredient')">Ingredient Detailed Info</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('cv_amounts')">Convert Amounts</a>
+          <a href="#" onclick="pagination('cv_amounts')">Convert Amounts</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('insert_ingredient')">Insert Ingredient</a>
+          <a href="#" onclick="pagination('insert_ingredient')">Insert Ingredient</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('upd_ingredient')">Update Ingredient</a>
+          <a href="#" onclick="pagination('upd_ingredient')">Update Ingredient</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#auth" onclick="pagination('del_ingredient')">Delete Ingredient</a>
+          <a href="#" onclick="pagination('del_ingredient')">Delete Ingredient</a>
         </li>
   </ul>
 </nav>
@@ -2049,7 +2049,7 @@
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">URL/?name&email</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -2281,7 +2281,7 @@
 
 <!-- ****************************************************************************************************************************************************************************** -->
 <!-- delete ingredient  -->
-  <section style="display:none;" id="d_ingredient">
+  <section style="display:none;" id="del_ingredient">
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
@@ -2543,7 +2543,7 @@
 <script>
 
 function pagination(id){
-  var ids = ['intro','auth','cv_amounts','s_recipe','d_ingredient','b_nutrients','b_ingredients','rand_recipe','insert_recipe','upd_recipe','del_recipe','s_ingredient','d_ingredient','insert_ingredient','upd_ingredient','del_ingredient'];
+  var ids = ['intro','auth','cv_amounts','s_recipe','d_recipe','b_nutrients','b_ingredients','rand_recipe','insert_recipe','upd_recipe','del_recipe','s_ingredient','d_ingredient','insert_ingredient','upd_ingredient','del_ingredient'];
 
     for(var i = 0; i < ids.length ; i++){
       if( !id.localeCompare(ids[i])) document.getElementById(ids[i]).style.display = "";
