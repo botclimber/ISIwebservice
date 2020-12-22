@@ -635,14 +635,14 @@
           <a href="#" onclick="pagination('intro')">Intro</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#" onclick="pagination('auth')">Auth</a>
+          <a href="#" onclick="pagination('auth')">Authentication</a>
         </li>
         <li class="nav-header" data-group="User"><a href="#">Recipes</a></li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('s_recipe')">Search Recipes</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#" onclick="pagination('d_recipe')">Recipe Detailed Info</a>
+          <a href="#" onclick="pagination('d_recipe')">Recipe Detailed Information</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('b_nutrients')">Recipes by Nutrients</a>
@@ -714,7 +714,7 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>Authentication</h1>
     </div>
     <div class="clearfix"></div>
 
@@ -749,7 +749,7 @@
         </tbody>
       </table>
 
-      <h2>Success 200</h2>
+      <h2>Success Fields</h2>
       <table>
         <thead>
           <tr>
@@ -834,11 +834,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>Search Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/searchrecipe</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -846,30 +846,50 @@
           <tr>
             <th style="width: 20%">Field</th>
             <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
+            <th style="width: 100%">Description</th>
             <th style="width: 20%">required</th>
             <th style="width: 20%">default value</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
+            <td>results</td>
             <td>string</td>
-            <td>user personal name</td>
+            <td><p>int | number of expected results</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
-          <tr>
-            <td>email</td>
+		  <tr>
+            <td>ingredients</td>
             <td>string</td>
-            <td>user personal email</td>
+            <td><p>string | separeted by comma (,)</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>nutrients</td>
+            <td>string</td>
+            <td>
+			  <p>minFiber (number 0 )</p>
+			  <p>maxFiber (number 100)</p>
+			  <p>minCals (number 0)</p>
+			  <p>maxCals (number 100)</p>
+			  <p>minProtein (number 0)</p>
+			  <p>maxProtein (number 100)</p>
+			  <p>minFat (number 0)</p>
+			  <p>maxFat (number 100)</p>
+			  <p>minCarbs (number 0)</p>
+			  <p>maxCarbs (number 100)</p>
+			  <p>sort (str | sort result by nutrient (calories, protein, carbs, fiber, fat))</p>
+			  <p>sortDirection (str | either desc or asc)</p>
+			</td>
             <td>true</td>
             <td>null</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Success 200</h2>
+      <h2>Success Fields</h2>
       <table>
         <thead>
           <tr>
@@ -880,11 +900,49 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td class="code">recipe_id</td>
+            <td>int</td> 
+            <td><p>Recipe identification number</p></td>
+          </tr>
+		  <tr>
+            <td class="code">calories</td>
+            <td>int</td> 
+            <td><p>Calories number</p></td>
+          </tr>
+		  <tr>
+            <td class="code">carbs</td>
+            <td>string</td> 
+            <td><p>Quantity of carbs</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fat</td>
+            <td>string</td> 
+            <td><p>Quantity of fat</p></td>
+          </tr>
+		  <tr>
+            <td class="code">protein</td>
+            <td>string</td> 
+            <td><p>Quantity of protein</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fiber</td>
+            <td>string</td> 
+            <td><p>Quantity of fiber</p></td>
+          </tr>
+		  <tr>
+            <td class="code">image</td>
+            <td>string</td> 
+            <td><p>Image URL</p></td>
+          </tr>
+		  <tr>
+            <td class="code">image_type</td>
+            <td>string</td> 
+            <td><p>Image file extention</p></td>
+          </tr>
+		  <tr>
+            <td class="code">recipe title</td>
+            <td>string</td> 
+            <td><p>Recipe page title</p></td>
           </tr>
         </tbody>
       </table>
@@ -951,15 +1009,15 @@
 
 <!-- ****************************************************************************************************************************************************************************** -->
 <!-- detailed recipe info  -->
-  <section style="display:none;" id="d_recipe">
+   <section style="display:none;" id="d_recipe">
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>Recipe Detailed Information</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/detailedrecipe</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -967,30 +1025,23 @@
           <tr>
             <th style="width: 20%">Field</th>
             <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
+            <th style="width: 100%">Description</th>
             <th style="width: 20%">required</th>
             <th style="width: 20%">default value</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
+            <td>recipe_id</td>
+            <td>int</td>
+            <td><p>Recipe identification number</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Success 200</h2>
+      <h2>Success Fields</h2>
       <table>
         <thead>
           <tr>
@@ -1001,11 +1052,39 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td class="code">recipe_id</td>
+            <td>int</td> 
+            <td><p>Recipe identification number</p></td>
+          </tr>
+		  <tr>
+            <td class="code">instructions</td>
+            <td>string</td> 
+            <td><p>Detailed instructions on how to cook/prepare the recipe, and what utencils to use</p></td>
+          </tr>
+		  <tr>
+            <td class="code">carbs</td>
+            <td>string</td> 
+            <td><p>Quantity of carbs</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fat</td>
+            <td>string</td> 
+            <td><p>Quantity of fat</p></td>
+          </tr>
+		  <tr>
+            <td class="code">protein</td>
+            <td>string</td> 
+            <td><p>Quantity of protein</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fiber</td>
+            <td>string</td> 
+            <td><p>Quantity of fiber</p></td>
+          </tr>
+		  <tr>
+            <td class="code">calories</td>
+            <td>int</td> 
+            <td><p>number of calories</p></td>
           </tr>
         </tbody>
       </table>
@@ -1064,143 +1143,23 @@
   </article>
 
       </div>
-  </section>
-<!-- END OF SECITON (recipe info) -->
-<!-- ****************************************************************************************************************************************************************************** -->
-
-
-<!-- ****************************************************************************************************************************************************************************** -->
-<!-- b_nutrients -->
-  <section style="display:none;" id="b_nutrients">
-      <div id="api-User-GetUser">
-  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
-    <div class="pull-left">
-      <h1>API - Authentication</h1>
-    </div>
-    <div class="clearfix"></div>
-
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
-
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
-        </div>
-      </div>
-
-      <!--<h2>Error 4xx</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">UserNotFound</td>
-            <td>
-            <p>The <code>id</code> of the User was not found.</p>
-
-
-                        </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
-    </span><span class="pun">{</span><span class="pln">
-      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
-        </div>
-      </div>-->
-
-  </article>
-
-      </div>
-  </section>
-<!-- END OF SECITON (by Nutrients) -->
+  </section>	
+<!-- END OF SECITON (Detailed recipe) -->
 <!-- ****************************************************************************************************************************************************************************** -->
 
 
 
 <!-- ****************************************************************************************************************************************************************************** -->
 <!-- b_ingredients  -->
-  <section style="display:none;" id="b_ingredients">
+  <section style="display:none;" id="b_nutrients">
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>Recipes by Nutrients</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL&&/bingredients</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1208,23 +1167,100 @@
           <tr>
             <th style="width: 20%">Field</th>
             <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
+            <th style="width: 90%">Description</th>
             <th style="width: 20%">required</th>
             <th style="width: 20%">default value</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
+            <td>results</td>
             <td>string</td>
-            <td>user personal name</td>
+            <td><p>Returns recipes based on ingredients</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
           <tr>
-            <td>email</td>
+            <td>minfiber</td>
             <td>string</td>
-            <td>user personal email</td>
+            <td><p>Returns recipes based on a minimum percentage of fiber</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>maxfiber</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a maximum percentage of fiber</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>mincals</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a minimum percentage of calories</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>maxcals</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a maximum percentage of calories</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>minprotein</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a minimum percentage of protein</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>maxprotein</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a maximum percentage of protein</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>minfat</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a minimum percentage of fat</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>maxfat</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a maximum percentage of fat</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>mincarbs</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a minimum percentage of carbs</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>maxcarbs</td>
+            <td>string</td>
+            <td><p>Returns recipes based on a maximum percentage of carbs</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+		  <tr>
+            <td>sort</td>
+            <td>string</td>
+            <td>
+				<p>Returns sorted recipes based on nutrients</p>
+				<p>calories</p>
+				<p>protein</p>
+				<p>carbs</p>
+				<p>fiber</p>
+				<p>fat</p>				
+			</td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -1243,9 +1279,7 @@
         <tbody>
           <tr>
             <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
+              <td>String</td>	              
             <td><p>User apiKey wich concedes permission to use our api service</p></td>
           </tr>
         </tbody>
@@ -1253,16 +1287,43 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="#">Success-Response:</a>
           </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+    </span>
+	{
+    "number": 2,
+    "results": [
+        {
+            "id": 715348,
+            "calories": 678,
+            "carbs": "69g",
+            "fat": "11g",
+            "protein": "35g",
+			“fiber”: “33g”,
+			"image":"https://****.jpg",
+            "imageType": "jpg",
+            "title": "Healthy Snickerdoodle Cookies”
+        },
+        {
+            "id": 715538,
+            "calories": 521,
+            "carbs": "69g",
+            "fat": "10g",
+            "protein": "35g",
+			“fiber”: “33g”,
+			"image":"https://****.jpg",
+            "imageType": "jpg",
+            "title":Bacon Vegetable Quiche "
+        }
+    ],
+    "totalResults": 32
+}
+</code></pre>
         </div>
       </div>
 
