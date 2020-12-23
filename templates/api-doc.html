@@ -49,7 +49,6 @@
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('del_recipe')">Delete Recipe</a>
         </li>
-
         <li class="nav-header" data-group="User"><a href="#">Ingredients</a></li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('s_ingredient')">Search Ingredients</a>
@@ -88,10 +87,11 @@
   <section id="intro">
     <h1>Intro</h1>
       <div id="api-User-GetUser">
-        <p>
-          Search using dozens of parameters: recipes, ingredients and calorie information, through information included on Stachio.co. As well as suggestions of side drinks to go along your favorite meals. (RESTful)
-        </p>
-
+        <p>Search using dozens of parameters: recipes, ingredients and calorie information, through information included on Stachio.co.</p>
+		<p>As well as suggestions of side drinks to go along your favorite meals.</p>
+		<p>Create your own recipes, and upload them to our database. Mark them as visible to share them with other creators.</p>
+		<p>Get access to our database of ingredients and add some of your own.</p>
+		<p><b>(RESTful)</b></p>
       </div>
   </section>
 
@@ -158,7 +158,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -194,7 +194,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -241,8 +241,8 @@
         <tbody>
           <tr>
             <td>results</td>
-            <td>string</td>
-            <td><p>int | number of expected results</p></td>
+            <td>int</td>
+            <td><p>Number of expected results</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -336,7 +336,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -372,7 +372,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -478,7 +478,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -514,7 +514,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -563,7 +563,7 @@
           <tr>
             <td>results</td>
             <td>int</td>
-            <td><p>Returns recipes based on nutrients</p></td>
+            <td><p>Number of expected results</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -777,7 +777,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -826,7 +826,7 @@
           <tr>
             <td>results</td>
             <td>string</td>
-            <td><p>Returns recipes based on ingredients</p></td>
+            <td><p>Number of expected results</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -965,7 +965,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -1017,7 +1017,7 @@
           <tr>
             <td>results</td>
             <td>int</td>
-            <td><p>Returns randomly selected recipe</p></td>
+            <td><p>Number of expected results</p></td>
             <td>true</td>
             <td>1</td>
           </tr>
@@ -1186,7 +1186,7 @@
           <tr>
             <td>title</td>
             <td>string</td>
-            <td><p>title of recipe to be inserted</p></td>
+            <td><p>Title of recipe to be inserted</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -1224,7 +1224,7 @@
             <td>fiber</td>
             <td>int</td>
             <td>
-				<p>fiber quantity in grams</p>
+				<p>Fiber quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1233,7 +1233,7 @@
             <td>protein</td>
             <td>int</td>
             <td>
-				<p>protein quantity in grams</p>
+				<p>Protein quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1242,7 +1242,7 @@
             <td>fat</td>
             <td>int</td>
             <td>
-				<p>fat quantity in grams</p>
+				<p>Fat quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1251,7 +1251,7 @@
             <td>carbs</td>
             <td>int</td>
             <td>
-				<p>carbs quantity in grams</p>
+				<p>Carbs quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1288,7 +1288,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">true</td>
+            <td class="code">success</td>
             <td>miniint</td> 
             <td><p>Feedback on insertion success</p></td>
           </tr>
@@ -1356,7 +1356,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -1402,11 +1402,18 @@
           </tr>
         </thead>
         <tbody>
+			<tr>
+				<td>recipe_id</td>
+				<td>int</td>
+				<td><p>Recipe identification number</p></td>
+				<td>true</td>
+				<td>null</td>
+          </tr>
           <tr>
             <td>title</td>
             <td>string</td>
-            <td><p>title of recipe to be inserted</p></td>
-            <td>true</td>
+            <td><p>Title of recipe to be inserted</p></td>
+            <td>false</td>
             <td>null</td>
           </tr>
           <tr>
@@ -1418,7 +1425,7 @@
 				<p>posunit	(string	| optional)</p>
 				<p>type 	(string	| optional)</p>
 			</td>
-            <td>true</td>
+            <td>false</td>
             <td>null</td>
           </tr>
 		  <tr>
@@ -1427,7 +1434,7 @@
             <td>
 				<p>Step by step instructions of the recipe</p>
 			</td>
-            <td>true</td>
+            <td>false</td>
             <td>null</td>
           </tr>
 		  <tr>
@@ -1443,7 +1450,7 @@
             <td>fiber</td>
             <td>int</td>
             <td>
-				<p>fiber quantity in grams</p>
+				<p>Fiber quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1452,7 +1459,7 @@
             <td>protein</td>
             <td>int</td>
             <td>
-				<p>protein quantity in grams</p>
+				<p>Protein quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1461,7 +1468,7 @@
             <td>fat</td>
             <td>int</td>
             <td>
-				<p>fat quantity in grams</p>
+				<p>Fat quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1470,7 +1477,7 @@
             <td>carbs</td>
             <td>int</td>
             <td>
-				<p>carbs quantity in grams</p>
+				<p>Carbs quantity in grams</p>
 			</td>
             <td>false</td>
             <td>null</td>
@@ -1507,9 +1514,9 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">true</td>
+            <td class="code">success</td>
             <td>miniint</td> 
-            <td><p>Feedback on insertion success</p></td>
+            <td><p>Feedback on update success</p></td>
           </tr>
         </tbody>
       </table>
@@ -1545,7 +1552,7 @@
 		"success": false,		
 		"error": {
 			"code": 123,
-			"message": "Error occurred on insertion"
+			"message": "Error occurred on update"
 		}
 	}
 </code></pre>
@@ -1575,7 +1582,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -1604,11 +1611,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>Insert Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">URL??/deleterecipe</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1616,30 +1623,23 @@
           <tr>
             <th style="width: 20%">Field</th>
             <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
+            <th style="width: 90%">Description</th>
             <th style="width: 20%">required</th>
             <th style="width: 20%">default value</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
+			<tr>
+				<td>recipe_id</td>
+				<td>int</td>
+				<td><p>Recipe identification number</p></td>
+				<td>true</td>
+				<td>null</td>
+          </tr> 
         </tbody>
       </table>
 
-      <h2>Success 200</h2>
+      <h2>Success Fields</h2>
       <table>
         <thead>
           <tr>
@@ -1650,27 +1650,48 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td class="code">success</td>
+            <td>miniint</td> 
+            <td><p>Feedback on delete success</p></td>
           </tr>
         </tbody>
       </table>
-
+	  
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="#">Success-Response:</a>
           </li>
       </ul>
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+    </span>
+	{
+		"success": true,
+	}
+</code></pre>
+        </div>
+      </div>
+
+		<ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="#">Error-Response:</a>
+          </li>
+		</ul>
+
+		<div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">201</span><span class="pln"> ERROR
+    </span>
+	{
+		"success": false,		
+		"error": {
+			"code": 123,
+			"message": "Error occurred on delete"
+		}
+	}
+</code></pre>
         </div>
       </div>
 
@@ -1697,7 +1718,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -1724,12 +1745,12 @@
   <section style="display:none;" id="s_ingredient">
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
-    <div class="pull-left">
-      <h1>API - Authentication</h1>
+    <div class="pull-left">	
+      <h1>Search Ingredients</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/searchingredient</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1737,30 +1758,30 @@
           <tr>
             <th style="width: 20%">Field</th>
             <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
+            <th style="width: 100%">Description</th>
             <th style="width: 20%">required</th>
             <th style="width: 20%">default value</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
+            <td>results</td>
+            <td>int</td>
+            <td><p>Number of expected results</p></td>
+            <td>false</td>
             <td>null</td>
           </tr>
-          <tr>
-            <td>email</td>
+		  <tr>
+            <td>query</td>
             <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
+            <td><p>Partial name of wanted ingredient</p></td>
+            <td>false</td>
             <td>null</td>
           </tr>
         </tbody>
       </table>
 
-      <h2>Success 200</h2>
+      <h2>Success Fields</h2>
       <table>
         <thead>
           <tr>
@@ -1771,18 +1792,56 @@
         </thead>
         <tbody>
           <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td class="code">recipe_id</td>
+            <td>int</td> 
+            <td><p>Recipe identification number</p></td>
+          </tr>
+		  <tr>
+            <td class="code">calories</td>
+            <td>int</td> 
+            <td><p>Calories number</p></td>
+          </tr>
+		  <tr>
+            <td class="code">carbs</td>
+            <td>string</td> 
+            <td><p>Quantity of carbs</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fat</td>
+            <td>string</td> 
+            <td><p>Quantity of fat</p></td>
+          </tr>
+		  <tr>
+            <td class="code">protein</td>
+            <td>string</td> 
+            <td><p>Quantity of protein</p></td>
+          </tr>
+		  <tr>
+            <td class="code">fiber</td>
+            <td>string</td> 
+            <td><p>Quantity of fiber</p></td>
+          </tr>
+		  <tr>
+            <td class="code">image</td>
+            <td>string</td> 
+            <td><p>Image URL</p></td>
+          </tr>
+		  <tr>
+            <td class="code">image_type</td>
+            <td>string</td> 
+            <td><p>Image file extention</p></td>
+          </tr>
+		  <tr>
+            <td class="code">recipe title</td>
+            <td>string</td> 
+            <td><p>Recipe page title</p></td>
           </tr>
         </tbody>
       </table>
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -1818,7 +1877,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -1834,7 +1893,7 @@
   </article>
 
       </div>
-  </section>
+</section>
 <!-- END OF SECITON (search ingredients) -->
 <!-- ****************************************************************************************************************************************************************************** -->
 
@@ -1903,7 +1962,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -1939,7 +1998,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -2025,7 +2084,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -2061,7 +2120,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -2145,7 +2204,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -2181,7 +2240,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -2265,7 +2324,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -2301,7 +2360,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
@@ -2392,7 +2451,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#success-examples-User-GetUser-0_0_0-0">Success-Response:</a>
+            <a href="link">Success-Response:</a>
           </li>
       </ul>
 
@@ -2428,7 +2487,7 @@
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
-            <a href="https://apidocjs.com/example_basic/#error-examples-User-GetUser-0_0_0-0">Error-Response:</a>
+            <a href="link">Error-Response:</a>
           </li>
       </ul>
 
