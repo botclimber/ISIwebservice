@@ -12,6 +12,17 @@
 class Recipes:
 
 	def __init__(self, db, userId, args ):
+		"""
+		Contructor for this object
+
+		:param db: variable object of database
+		:param userId: user id
+		:param args: arguments of condition in the search
+		:type db: string
+		:type userId: string
+		:type args: string
+
+		"""
 
 		self.db = db
 		self.cursor = db.cursor()
@@ -19,8 +30,15 @@ class Recipes:
 		self.user_id = int(userId)
 		self.args = args
 
-	# method that returns recipes
+
 	def gRecipes(self):
+		"""
+		Method that search for recipes
+		:param self: object with all information for the search
+		:type param: object
+		:return: return a array of recipe
+
+		"""
 		sql = "SELECT Recipe.title, Recipe.id_recipe, Recipe.image_link, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and (visible = 1 or (visible = 0 and id_user = {})) ".format(self.user_id)
 
 		sql += " and fiber > {}".format(self.args.get('minFiber')) if self.args.get('minFiber') != None else ""
@@ -66,4 +84,8 @@ class Recipes:
 	# dRecipe - delete recipe
 
 	def __del__(self):
+		"""
+		Destroy the class recipes
+
+		"""
 		print("detroy class Recipes")
