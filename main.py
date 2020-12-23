@@ -13,7 +13,7 @@ sec = Security(db)
 # initial
 @app.route('/', methods=['GET'])
 def index():
-	return render_template("api-doc.html")	
+	return render_template("api-doc.html")
 
 
 @app.route('/api/v1/auth/name=<name>&email=<email>', methods=['GET'])
@@ -22,9 +22,9 @@ def auth(name, email):
 		obj = Auth(name, email, db) # instance obj
 		key = obj.cApiKey() # create ApiKey for this user
 		obj.cUser(key) # create record in DB
-	
+
 	else:
-		key = {'status': 500, 'message':'already exists an apiKey for this email'}		
+		key = {'status': 500, 'message':'already exists an apiKey for this email'}
 
 	return jsonify(key)
 
