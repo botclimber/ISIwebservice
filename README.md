@@ -17,7 +17,7 @@ Run Command to execute:
 python3 main.py
 ```
 
-## Todo List:
+## Functionalities:
 
 * api info:
 	- [ ] api documentation incomplete
