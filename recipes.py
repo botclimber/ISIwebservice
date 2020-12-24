@@ -65,19 +65,47 @@ class Recipes:
 			self.cursor.execute(sql)
 			results = self.cursor.fetchall()
 
-			data = {'results': [],'nr_results': len(results) }
+			data = {'results': [], 'nr_results': len(results)}
 			for x in results:
 				data['results'].append({'id': x[1],'calories': x[3], 'carbs': x[4], 'fat': x[5], 'protein': x[6], 'fiber': x[7], 'image': x[2], 'imageType': 'jpg,jpeg', 'title': x[0]})
 
 
 		except:
-			data = {'status':'Error: unable to fecth data'}
+			data = {'status': 'Error: unable to fecth data'}
 
 		return data
 
-	# gRecipeByIng
 	# gRecipeDetais - by id
-	# gRandomRecipe
+	def gRecipeDetails(self):
+		data = {}
+		sql = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(self.args.get('id_recipe'))
+
+		ing = "SELECT Ingredients.id_ingredient, Ingredients.nome_ingredient, Ingredients.calories, Ingredients.type, Ingredientes_Receita.amount FROM Ingredients, Ingredientes_Receita WHERE Ingredientes_Receita.id_ingredient = Ingredients.id_ingredient and Ingredientes_Receita.id_recipe = {}".format(self.args.get('id_recipe'))
+
+		if not self.args.get('id_recipe'):
+			data = {'status': 300, 'Message': 'parameter required [id_recipe]'}
+		else:
+			try:
+				self.cursor.execute(sql)
+				recipes = self.cursor.fetchone()
+
+				self.cursor.execute(ing)
+				recipes_ing = self.cursor.fetchall()
+
+				data = {'recipe': [{'id': self.args.get('id_recipe'), 'title': recipes[0], 'description': recipes[1], 'instructions': recipes[2], 'image_link': recipes[3], 'public': recipes[4], 'calories': recipes[5], 'fat': recipes[6], 'protein': recipes[7], 'fiber': recipes[8]}, {'ingredients': []}]}
+
+				for y in recipes_ing:
+					data['recipe'][1]['ingredients'].append({'id_ingredient': y[0], 'name': y[1], 'ingredient_calories': y[2], 'type': y[3], 'amount': y[4]})
+
+			except:
+				self.db.rollback()
+
+		return data
+
+
+
+
+	# gRandomRecipes
 
 	# cRecipe - create recipe
 	# uRecipe - update recipe
@@ -88,4 +116,4 @@ class Recipes:
 		Destroy the class recipes
 
 		"""
-		print("detroy class Recipes")
+		print("destroy class Recipes")

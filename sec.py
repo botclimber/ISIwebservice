@@ -29,7 +29,7 @@ class Security:
 
 			
 		except:
-			db.rollback()			
+			self.db.rollback()
 
 		return True if len(result) == 1 else False
 
@@ -48,6 +48,6 @@ class Security:
 			result = self.cursor.fetchall()
 
 		except:
-			db.rollback()
+			self.db.rollback()
 
 		return result[0][0]
