@@ -19,9 +19,6 @@ def index():
 	return render_template("api-doc.html")
 
 
-
-
-
 """
 	With this app.route we check and create a new user if doesn't exist
 """
@@ -43,9 +40,6 @@ def auth(name, email):
 		key = {'status': 500, 'message':'already exists an apiKey for this email'}
 
 	return jsonify(key)
-
-
-
 
 
 """
@@ -75,8 +69,6 @@ def g_recipe_details():
 		response = {'status': '400', 'message': 'invalid apiKey'}
 
 	return jsonify(response)
-
-
 
 
 if __name__ == "__main__":

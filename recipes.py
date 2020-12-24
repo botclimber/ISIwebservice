@@ -1,17 +1,9 @@
 
-# params:
-#	- results
-#	- minfiber
-#	- cals
-#	- protein
-#	- fat
-#	- carbs
-#	- sort
-#	- sortDirection	(asc or desc)
+# waiting signature
 
 class Recipes:
 
-	def __init__(self, db, userId, args ):
+	def __init__(self, db, user_id, args):
 		"""
 		Contructor for this object
 
@@ -27,7 +19,7 @@ class Recipes:
 		self.db = db
 		self.cursor = db.cursor()
 
-		self.user_id = int(userId)
+		self.user_id = int(user_id)
 		self.args = args
 
 
@@ -75,18 +67,19 @@ class Recipes:
 
 		return data
 
+
 	# gRecipeDetais - by id
 	def gRecipeDetails(self):
-		data = {}
-		sql = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(self.args.get('id_recipe'))
 
+		data = {}
+		recipe = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(self.args.get('id_recipe'))
 		ing = "SELECT Ingredients.id_ingredient, Ingredients.nome_ingredient, Ingredients.calories, Ingredients.type, Ingredientes_Receita.amount FROM Ingredients, Ingredientes_Receita WHERE Ingredientes_Receita.id_ingredient = Ingredients.id_ingredient and Ingredientes_Receita.id_recipe = {}".format(self.args.get('id_recipe'))
 
 		if not self.args.get('id_recipe'):
 			data = {'status': 300, 'Message': 'parameter required [id_recipe]'}
 		else:
 			try:
-				self.cursor.execute(sql)
+				self.cursor.execute(recipe)
 				recipes = self.cursor.fetchone()
 
 				self.cursor.execute(ing)
@@ -102,11 +95,10 @@ class Recipes:
 
 		return data
 
-
-
-
+	# GET REQUEST
 	# gRandomRecipes
 
+	# POST|UPDATE|DELETE REQUESTS
 	# cRecipe - create recipe
 	# uRecipe - update recipe
 	# dRecipe - delete recipe
