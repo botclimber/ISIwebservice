@@ -4,18 +4,18 @@
 ### Context
 
 This is an api service to manage a recipes db. The functionalities are:
-	- CREATE recipe or Ingredient
-	- UPDATE recipe or Ingredient
-	- DELETE recipe or Ingredient
-	- GET recipe or Ingredient:
-		- GET all
-		- GET one by id
-		_ GET random (only in recipes)
+- CREATE recipe or Ingredient
+- UPDATE recipe or Ingredient
+- DELETE recipe or Ingredient
+- GET recipe or Ingredient:
+	- GET all
+	- GET one by id
+	- GET random (only in recipes)
 
 Run Command to execute:
-'''
+```
 python3 main.py
-'''
+```
 
 ## Todo List:
 
