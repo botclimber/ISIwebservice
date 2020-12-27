@@ -29,10 +29,10 @@ python3 main.py
 * recipes:
 	- [x] get all recipes done
 	- [x] get recipe by id done
-	- [ ] get random recipe functionality undone 
-	- [ ] create recipe functionality undone
-	- [ ] update recipe functionality undone
-	- [ ] delete recipe functionality undone
+	- [x] get random recipe functionality done 
+	- [x] create recipe functionality done
+	- [x] update recipe functionality done
+	- [x] delete recipe functionality done
 
 * Ingredients:
 	- [ ] get all ingredients undone
@@ -42,5 +42,6 @@ python3 main.py
 	- [ ] delete ingredient undone
 
 * performance & usage:
+	- [ ] method to verify id id exists at any class
 	- [ ] simplify code
 	- [ ] document code | classes signature
