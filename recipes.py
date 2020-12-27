@@ -1,9 +1,12 @@
-
 # waiting signature
+
+import datetime
+import numpy
+import random
 
 class Recipes:
 
-	def __init__(self, db, user_id, args):
+	def __init__(self, db, user_id = 0, args = []):
 		"""
 		Contructor for this object
 
@@ -95,13 +98,126 @@ class Recipes:
 
 		return data
 
-	# GET REQUEST
-	# gRandomRecipes
+	
+	# get random recipe
+	def gRandomRecipes(self, recipes):
+		
+		return recipes['results'][random.randint(0, len(recipes) - 1)]			
+
+
 
 	# POST|UPDATE|DELETE REQUESTS
 	# cRecipe - create recipe
+	def cRecipe(self):
+		
+		if self.args['title'] == None or len(self.args['id']) == 0 or len(self.args['id']) != len(self.args['amount']) or self.args['instructions'] == None:
+			return {'status': 'Error', 'Message':'Params Required [title, ingredients, instructions]'}
+		
+		try: calories = self.args['calories']
+		except: calories = 0
+
+		try: carbs = self.args['carbs']
+		except: carbs = 0
+
+		try: fat = self.args['fat']
+		except: fat = 0
+
+		try: protein = self.args['protein']
+		except: protein = 0
+
+		try: fiber = self.args['fiber']
+		except: fiber = 0
+		
+		try: img_link = self.args['url_image']
+		except: img_link = "-"
+		
+		try: desc = self.args['description']
+		except: desc = "-"
+
+		try: visible = self.args['visible']
+		except: visible = 1
+		
+		cRN = "INSERT INTO Nutrition (calories, carbs, fat, protein, fiber) VALUES ({}, {}, {}, {}, {})".format(calories, carbs, fat, protein, fiber)
+		try:
+			self.cursor.execute(cRN)
+			nutrition_id = self.cursor.lastrowid
+
+			cRecipeSql = "INSERT INTO Recipe (id_nutrition, title, description, instructions, image_link, image_type, created_at, id_user, updated_at, visible )VALUES({}, '{}', '{}', '{}', '{}', '{}', '{}', {}, '{}', {})".format(nutrition_id, self.args['title'], desc, self.args['instructions'], img_link, 'jpg', datetime.date.today(), self.user_id, '0000-00-00', visible)
+			
+			self.cursor.execute(cRecipeSql)
+			recipe_id = self.cursor.lastrowid
+			
+			for x in range(len(self.args['id'])):
+				self.cursor.execute("INSERT INTO Ingredientes_Receita (id_ingredient, id_recipe, amount, id_amount_type) VALUES({}, {}, {}, {})".format(self.args['id'][x], recipe_id, self.args['amount'][x], '3'))
+		
+			self.db.commit()
+			return {'status': 200, 'Message': 'Recipe Created [recipe_id = {}]'.format(recipe_id)}
+		
+		except:
+			self.db.rollback()
+
+
+		return {'status': 'ERROR', 'Message': 'Check your required parameters'}
+
+
+
 	# uRecipe - update recipe
+	def uRecipe(self, recipe_id):
+		
+		recipeFields = ['title', 'instructions', 'description', 'image_link', 'visible']
+		nutritionFields = ['calories', 'fat', 'carbs', 'protein', 'fiber']	
+	
+		for x in recipeFields:
+			if x in self.args:
+				sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} ".format(x, self.args[x], datetime.date.today(), recipe_id)
+				self.cursor.execute(sql)				
+			
+		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
+		self.cursor.execute(gNutritionId)		
+		nutrition_id = self.cursor.fetchone()[0]
+		
+		for x in nutritionFields:
+			if x in self.args:
+				sql = "UPDATE Nutrition SET {} = '{}' WHERE id_nutrition = {} ".format(x, self.args[x], nutrition_id)
+				self.cursor.execute(sql)
+
+		if 'id_ingredients' in self.args:
+			for x in range(len(self.args['id_ingredients'])):
+				sql = "UPDATE Ingredientes_Receita SET amount = {} WHERE id_recipe = {} and id_ingredient = {}".format(self.args['amount'][x], recipe_id, self.args['id_ingredients'][x])
+				self.cursor.execute(sql)				
+
+		self.db.commit()	
+		return {"Status": 200, "Message":"Recipe Updated ['recipe_id': {}, 'updated_at': {} ]".format(recipe_id, datetime.date.today())}
+
+
+
 	# dRecipe - delete recipe
+	# make private method verify if id exists !important
+	def dRecipe(self, recipe_id):
+		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s"
+
+		sqlDIngredients = "DELETE FROM Ingredientes_Receita WHERE id_recipe = %s"	
+	
+		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
+		self.cursor.execute(gNutritionId)		
+		nutrition_id = self.cursor.fetchone()[0]
+		
+		sqlDNutrition = "DELETE FROM Nutrition WHERE id_nutrition = {}".format(nutrition_id)
+
+		try:
+			self.cursor.execute(sqlDIngredients, recipe_id)	
+			self.cursor.execute(sqlDRecipe, recipe_id)	
+			self.cursor.execute(sqlDNutrition)
+			
+			self.db.commit()
+
+		except:
+			self.db.rollback()			
+
+		return {'Status': 204, 'Message': 'Successful Deleted'}
+
+		
+
 
 	def __del__(self):
 		"""

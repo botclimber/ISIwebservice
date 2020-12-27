@@ -42,6 +42,11 @@ def auth(name, email):
 	return jsonify(key)
 
 
+
+# ****************
+# * GET REQUESTS *
+# ****************
+
 """
 	With this app.route we can get all recipes with or without filters
 """
@@ -58,6 +63,23 @@ def recipes():
 	return jsonify(response)
 
 
+
+
+@app.route('/api/v1/rand_recipes/', methods=['GET'])
+def g_random_recipe():
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Recipes(db, sec.gUserId(request.args.get('apiKey')), request.args)
+		recipes = obj.gRecipes() # get all recipes
+		response = obj.gRandomRecipes(recipes) # send all recipes to the method gRandomRecipe and then it choses one randomly
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
 @app.route('/api/v1/recipe_details/', methods=['GET'])
 def g_recipe_details():
 
@@ -69,6 +91,67 @@ def g_recipe_details():
 		response = {'status': '400', 'message': 'invalid apiKey'}
 
 	return jsonify(response)
+
+
+# *****************
+# * POST REQUESTS *
+# *****************
+
+@app.route('/api/v1/create_recipe/', methods=['POST'])
+def create_recipe():
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Recipes(db, sec.gUserId(data['apiKey']), data)
+		response = obj.cRecipe()	
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+# ****************
+# * PUT REQUESTS *
+# ****************
+
+@app.route('/api/v1/update_recipe/<int:recipe_id>', methods=['PUT'])
+def update_recipe(recipe_id):
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Recipes(db, sec.gUserId(data['apiKey']), data)
+		response = obj.uRecipe(recipe_id)	
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+# *******************
+# * DELETE REQUESTS *
+# *******************
+
+@app.route('/api/v1/delete_recipe/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Recipes(db)
+		response = obj.dRecipe(recipe_id)
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
 
 
 if __name__ == "__main__":
