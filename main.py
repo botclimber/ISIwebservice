@@ -4,6 +4,7 @@ import pymysql
 from sec import Security
 from auth import Auth
 from recipes import Recipes
+from ingredients import Ingredients
 
 app = Flask(__name__)
 
@@ -93,6 +94,38 @@ def g_recipe_details():
 	return jsonify(response)
 
 
+
+
+
+# INGREDIENTS
+@app.route('/api/v1/ingredients/', methods=['GET'])
+def ingredients():
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Ingredients(db, sec.gUserId(request.args.get('apiKey')), request.args)
+		response = obj.gIngredients()
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
+@app.route('/api/v1/ingredient_details/', methods=['GET'])
+def g_ingredients_details():
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Ingredients(db, sec.gUserId(request.args.get('apiKey')), request.args)
+		response = obj.gIngredientDetails()
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
 # *****************
 # * POST REQUESTS *
 # *****************
@@ -111,6 +144,24 @@ def create_recipe():
 		response = {'status': '400', 'message': 'invalid apiKey'}
 
 	return jsonify(response)
+
+
+
+@app.route('/api/v1/create_ingredient/', methods=['POST'])
+def create_ingredient():
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Ingredients(db, sec.gUserId(data['apiKey']), data)
+		response = obj.cIngredient()	
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
 
 
 # ****************
@@ -132,6 +183,26 @@ def update_recipe(recipe_id):
 
 	return jsonify(response)
 
+
+
+
+@app.route('/api/v1/update_ingredient/<int:ing_id>', methods=['PUT'])
+def update_ingredient(ing_id):
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Ingredients(db, sec.gUserId(data['apiKey']), data)
+		response = obj.uIngredient(ing_id)	
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
 # *******************
 # * DELETE REQUESTS *
 # *******************
@@ -143,8 +214,26 @@ def delete_recipe(recipe_id):
 	
 	# call method to verify if apiKey exists
 	if sec.verify('api_key', data['apiKey']): 
-		obj = Recipes(db)
+		obj = Recipes(db, sec.gUserId(data['apiKey']))
 		response = obj.dRecipe(recipe_id)
+	
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
+
+@app.route('/api/v1/delete_ingredient/<int:ing_id>', methods=['DELETE'])
+def delete_ingredient(ing_id):
+	
+	data = request.get_json()
+	
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', data['apiKey']): 
+		obj = Ingredients(db, sec.gUserId(data['apiKey']))
+		response = obj.dIngredient(ing_id)
 	
 	else:
 		response = {'status': '400', 'message': 'invalid apiKey'}

@@ -169,7 +169,7 @@ class Recipes:
 	
 		for x in recipeFields:
 			if x in self.args:
-				sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} ".format(x, self.args[x], datetime.date.today(), recipe_id)
+				sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} and id_user = {}".format(x, self.args[x], datetime.date.today(), recipe_id, self.user_id)
 				self.cursor.execute(sql)				
 			
 		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
@@ -194,7 +194,7 @@ class Recipes:
 	# dRecipe - delete recipe
 	# make private method verify if id exists !important
 	def dRecipe(self, recipe_id):
-		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s"
+		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s and id_user = %s"
 
 		sqlDIngredients = "DELETE FROM Ingredientes_Receita WHERE id_recipe = %s"	
 	
@@ -205,7 +205,7 @@ class Recipes:
 		sqlDNutrition = "DELETE FROM Nutrition WHERE id_nutrition = {}".format(nutrition_id)
 
 		try:
-			self.cursor.execute(sqlDIngredients, recipe_id)	
+			self.cursor.execute(sqlDIngredients, [recipe_id, self.user_id])	
 			self.cursor.execute(sqlDRecipe, recipe_id)	
 			self.cursor.execute(sqlDNutrition)
 			

@@ -35,8 +35,8 @@ python3 main.py
 	- [x] delete recipe functionality done
 
 * Ingredients:
-	- [ ] get all ingredients undone
-	- [ ] get ingredient by id undone
+	- [x] get all ingredients done 
+	- [x] get ingredient by id done
 	- [ ] create ingredient undone
 	- [ ] update ingredient undone
 	- [ ] delete ingredient undone
@@ -45,3 +45,4 @@ python3 main.py
 	- [ ] method to verify id id exists at any class
 	- [ ] simplify code
 	- [ ] document code | classes signature
+	- [ ] script to install all dependencies at one
