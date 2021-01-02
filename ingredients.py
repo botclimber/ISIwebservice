@@ -1,14 +1,7 @@
+from api_standard_service import Api_standard_service
+import datetime
 
-
-class Ingredients:
-
-	def __init__(self, db, user_id = 0, args = []):
-		
-		self.db = db
-		self.cursor = db.cursor()
-		
-		self.args = args
-		self.user_id = int(user_id)
+class Ingredients(Api_standard_service):
 
 
 	def gIngredients(self):
@@ -30,9 +23,11 @@ class Ingredients:
 
 		return data		
 
+
+
+
 	def gIngredientDetails(self):
-		
-		if self.args.get('ingredient_id') == None:
+		if self.checkParam('ingredient_id') is False:
 			return {'status': 300, 'Message':'parameter required [ingredient_id]'}
 		
 		data = {'content':[], 'total_results': 0}
@@ -64,11 +59,70 @@ class Ingredients:
 		return data
 
 
+
+
+
+
 	def cIngredient(self):
-		pass	
+		
+		if self.checkParam(['name', 'type']) is False:
+			return {'Status': 'ERROR', 'Message': 'Params required [name, type]'}
+		
+		# verifys if ingredient exists by checking his name
+		if self.db_ver('Ingredients', 'nome_ingredient', self.args['name']) > 0:
+			return {'status': 'ERROR', 'Message': 'Ingredient name already exists'}		
+		
+		
+		try: calories = self.args['calories']
+		except: calories  = 0
+
+		sql = "INSERT INTO Ingredients(id_user, nome_ingredient, calories, created_at, type)VALUES(%s, %s, %s , %s, %s)"
+
+		try:
+			self.cursor.execute(sql, [self.user_id, self.args['name'], calories, datetime.date.today(), self.args['type']])
+			self.db.commit()
+
+			return {'Status': 200, 'Message': 'Ingredient Created'}
+				
+		except:
+			return {'Status': 'ERROR', 'Message': 'Something went wrong!'}
+
+
+
+
 
 	def uIngredient(self, ing_id):
-		pass
+		try: name = self.args['nome_ingredient']
+		except: name = ""		
+
+		param = ['nome_ingredient', 'calories', 'type']
+
+		# verify if id and name exists
+		if (self.db_ver('Ingredients', 'id_ingredient', ing_id) == 1) and ( self.db_ver('Ingredients', 'nome_ingredient', name) == 0 ): 	
+			try:
+				for x in param:
+					if x in self.args:
+						sql = "UPDATE Ingredients SET {} = '{}' WHERE id_ingredient = {} and id_user = {}".format(x, self.args[x], ing_id, self.user_id)
+						self.cursor.execute(sql)	
+						
+				self.db.commit()
+				
+			except:
+				self.db.rollback()
+		
+		else:
+			return {'status': 'ERROR', 'Message': 'Ingredient id not found or ingredient name already exists in DB'}		
+	
+
+		return {'status': 200, 'Message': 'successful updated!'}		
+
+
+
+
 
 	def dIngredient(self, ing_id):
 		pass
+		
+
+
+

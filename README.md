@@ -37,12 +37,12 @@ python3 main.py
 * Ingredients:
 	- [x] get all ingredients done 
 	- [x] get ingredient by id done
-	- [ ] create ingredient undone
-	- [ ] update ingredient undone
-	- [ ] delete ingredient undone
+	- [x] create ingredient done
+	- [x] update ingredient done
+	- [?] delete ingredient undone
 
 * performance & usage:
-	- [ ] method to verify id id exists at any class
+	- [x] method to verify id id exists at any class
 	- [ ] simplify code
 	- [ ] document code | classes signature
 	- [ ] script to install all dependencies at one
