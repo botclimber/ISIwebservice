@@ -23,7 +23,7 @@ then just run:
 python3 main.py
 ```
 and u can start using it. first page will be the api documentation:
-![Image of api_doc](https://github.com/botclimber/ISIwebservice/static/img/api_img.png)
+![Image of api_doc](https://github.com/botclimber/ISIwebservice/blob/main/static/img/api_img.png)
 
 ## Functionalities:
 
