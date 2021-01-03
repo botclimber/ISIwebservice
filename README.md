@@ -12,10 +12,18 @@ This is an api service to manage a recipes db. The functionalities are:
 	- GET one by id
 	- GET random (only in recipes)
 
-Run Command to execute:
+## Usage
+### if locally
+After clone it, install requirementes by running following command:
+```
+pip3 install -r requirements.txt
+```
+then just run:
 ```
 python3 main.py
 ```
+and u can start using it. first page will be the api documentation:
+![alt tag](https://prnt.sc/wfe3i2)
 
 ## Functionalities:
 
@@ -45,4 +53,4 @@ python3 main.py
 	- [x] method to verify id id exists at any class
 	- [ ] simplify code
 	- [ ] document code | classes signature
-	- [ ] script to install all dependencies at one
+	- [x] script to install all dependencies at one

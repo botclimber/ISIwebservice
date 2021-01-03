@@ -1,31 +1,13 @@
 # waiting signature
+from api_standard_service import Api_standard_service
 
 import datetime
 import numpy
 import random
 
-class Recipes:
+class Recipes(Api_standard_service):
 
-	def __init__(self, db, user_id = 0, args = []):
-		"""
-		Contructor for this object
-
-		:param db: variable object of database
-		:param userId: user id
-		:param args: arguments of condition in the search
-		:type db: string
-		:type userId: string
-		:type args: string
-
-		"""
-
-		self.db = db
-		self.cursor = db.cursor()
-
-		self.user_id = int(user_id)
-		self.args = args
-
-
+	
 	def gRecipes(self):
 		"""
 		Method that search for recipes
@@ -71,6 +53,8 @@ class Recipes:
 		return data
 
 
+
+
 	# gRecipeDetais - by id
 	def gRecipeDetails(self):
 
@@ -98,6 +82,8 @@ class Recipes:
 
 		return data
 
+
+
 	
 	# get random recipe
 	def gRandomRecipes(self, recipes):
@@ -106,11 +92,13 @@ class Recipes:
 
 
 
+
+
 	# POST|UPDATE|DELETE REQUESTS
 	# cRecipe - create recipe
 	def cRecipe(self):
 		
-		if self.args['title'] == None or len(self.args['id']) == 0 or len(self.args['id']) != len(self.args['amount']) or self.args['instructions'] == None:
+		if self.checkParam(['title', 'amount', 'instructions', 'id']) is False or len(self.args['id']) != len(self.args['amount']):
 			return {'status': 'Error', 'Message':'Params Required [title, ingredients, instructions]'}
 		
 		try: calories = self.args['calories']
@@ -136,6 +124,11 @@ class Recipes:
 
 		try: visible = self.args['visible']
 		except: visible = 1
+		
+		#verify if ing_id exists
+		for x in self.args['id']:
+			if self.db_ver('Ingredients', 'id_ingredient', x) == 0:
+				return {'status': 'ERROR', 'Message': 'ingredient doesnt exist in our database'}
 		
 		cRN = "INSERT INTO Nutrition (calories, carbs, fat, protein, fiber) VALUES ({}, {}, {}, {}, {})".format(calories, carbs, fat, protein, fiber)
 		try:
@@ -163,7 +156,9 @@ class Recipes:
 
 	# uRecipe - update recipe
 	def uRecipe(self, recipe_id):
-		
+		if self.db_ver('Recipe', 'id_recipe', recipe_id) == 0:		
+			return {'Status':'ERROR', 'Message': 'Recipe id doesnt exist in our DB'}
+
 		recipeFields = ['title', 'instructions', 'description', 'image_link', 'visible']
 		nutritionFields = ['calories', 'fat', 'carbs', 'protein', 'fiber']	
 	
@@ -192,16 +187,20 @@ class Recipes:
 
 
 	# dRecipe - delete recipe
-	# make private method verify if id exists !important
 	def dRecipe(self, recipe_id):
-		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s and id_user = %s"
+		
+		if self.db_ver('Recipe', 'id_recipe', recipe_id) == 0:		
+			return {'Status':'ERROR', 'Message': 'Recipe id doesnt exist in our DB'}
 
+		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s and id_user = %s"
 		sqlDIngredients = "DELETE FROM Ingredientes_Receita WHERE id_recipe = %s"	
-	
+		
+		# get nutrition_id
 		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
 		self.cursor.execute(gNutritionId)		
 		nutrition_id = self.cursor.fetchone()[0]
 		
+		# delete from table Nutrition
 		sqlDNutrition = "DELETE FROM Nutrition WHERE id_nutrition = {}".format(nutrition_id)
 
 		try:

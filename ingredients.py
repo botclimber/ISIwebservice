@@ -125,4 +125,5 @@ class Ingredients(Api_standard_service):
 		
 
 
-
+	def __del__(self):
+		print("destroy class Ingredients")
