@@ -23,7 +23,7 @@ then just run:
 python3 main.py
 ```
 and u can start using it. first page will be the api documentation:
-![alt tag](https://prnt.sc/wfe3i2)
+<img src="https://prnt.sc/wfe3i2" alt="doc_img"/>
 
 ## Functionalities:
 
