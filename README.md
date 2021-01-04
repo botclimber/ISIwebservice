@@ -26,13 +26,17 @@ and u can start using it. first page will be the api documentation:
 ![Image of api_doc](https://github.com/botclimber/ISIwebservice/blob/main/static/img/api_img.png)
 
 ## Functionalities:
+* Client:
+	- in progress ...
 
 * api info:
-	- [ ] api documentation incomplete
+	- [x] api documentation complete
+	- [ ] make it a litle more intuitive
 
 * Auth:
 	- [x] create and send user apiKey done
 	- [x] generic method to verifications done
+	- [ ] use JWT to auth
 
 * recipes:
 	- [x] get all recipes done
@@ -46,11 +50,20 @@ and u can start using it. first page will be the api documentation:
 	- [x] get all ingredients done 
 	- [x] get ingredient by id done
 	- [x] create ingredient done
-	- [x] update ingredient done
+	- [?] update ingredient done
 	- [?] delete ingredient undone
 
+* Beers: [<p style="font-size:10pt;">data from external api</p>]
+	- [x] get all beers done
+	- [x] get beer details done
+	- [x] get random beer done
+	- [x] recomend beer to pair food done
+
+* security:
+	- [ ] regist every request (ip, type of, user, datetime) undone
+
 * performance & usage:
-	- [x] method to verify id id exists at any class
+	- [x] method to verify if id exists at any class
 	- [ ] simplify code
 	- [ ] document code | classes signature
 	- [x] script to install all dependencies at one

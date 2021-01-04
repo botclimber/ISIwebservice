@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- saved from url=(0035)https://apidocjs.com/example_basic/ -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <title>apiDoc: example-basic - 0.1.0</title>
+  <title>QUICKRECIPES - API DOC</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link href="./static/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -32,12 +32,6 @@
           <a href="#" onclick="pagination('d_recipe')">Recipe Detailed Information</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#" onclick="pagination('b_nutrients')">Recipes by Nutrients</a>
-        </li>
-        <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#" onclick="pagination('b_ingredients')">Recipe by Ingredients</a>
-        </li>
-        <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('rand_recipe')">Random Recipe</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
@@ -57,9 +51,6 @@
           <a href="#" onclick="pagination('d_ingredient')">Ingredient Detailed Info</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
-          <a href="#" onclick="pagination('cv_amounts')">Convert Amounts</a>
-        </li>
-        <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('insert_ingredient')">Insert Ingredient</a>
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
@@ -67,6 +58,19 @@
         </li>
         <li data-group="User" data-name="GetUser" data-version="0.0.0">
           <a href="#" onclick="pagination('del_ingredient')">Delete Ingredient</a>
+        </li>
+        <li class="nav-header" data-group="User"><a href="#">Beers</a></li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#" onclick="pagination('s_beers')">Search Beers</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#" onclick="pagination('d_beer')">Beer Detailed Info</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#" onclick="pagination('r_beer')">Random Beer</a>
+        </li>
+        <li data-group="User" data-name="GetUser" data-version="0.0.0">
+          <a href="#" onclick="pagination('rc_beer')">Recomend Beer</a>
         </li>
   </ul>
 </nav>
@@ -102,10 +106,11 @@
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
       <h1>Authentication</h1>
+      <p>This key is needed in order to use our API</p>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/name&email</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -166,7 +171,7 @@
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
     </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
+    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"Nr4SRPJg0mZnhw"</span><span class="pun">,</span><span class="pln">
     </span><span class="pun">}</span></code></pre>
         </div>
       </div>
@@ -221,11 +226,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Search Recipe</h1>
+      <h1>API - Search Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/searchrecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/recipes/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -239,20 +244,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>results</td>
-            <td>int</td>
-            <td><p>Number of expected results</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>ingredients</td>
-            <td>string</td>
-            <td><p>string | separeted by comma (,)</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
 		  <tr>
             <td>nutrients</td>
             <td>string</td>
@@ -267,69 +258,30 @@
 			  <p>maxFat (number 100)</p>
 			  <p>minCarbs (number 0)</p>
 			  <p>maxCarbs (number 100)</p>
-			  <p>sort (str | sort result by nutrient (calories, protein, carbs, fiber, fat))</p>
-			  <p>sortDirection (str | either desc or asc)</p>
 			</td>
-            <td>true</td>
+            <td>false</td>
             <td>null</td>
           </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
           <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
+            <td>results</td>
+            <td>int</td>
+            <td><p>Number of expected results</p></td>
+            <td>false</td>
+            <td>null</td>
           </tr>
-        </thead>
-        <tbody>
           <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
+            <td>sort</td>
+            <td>string</td>
+            <td><p>sort by param (ex: calories, carbs, fat)</p></td>
+            <td>false</td>
+            <td>null</td>
           </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>Calories number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image</td>
-            <td>string</td> 
-            <td><p>Image URL</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image_type</td>
-            <td>string</td> 
-            <td><p>Image file extention</p></td>
-          </tr>
-		  <tr>
-            <td class="code">recipe title</td>
-            <td>string</td> 
-            <td><p>Recipe page title</p></td>
+          <tr>
+            <td>sortDirection</td>
+            <td>string</td>
+            <td><p>if desc or asc (default = asc)</p></td>
+            <td>false</td>
+            <td>null</td>
           </tr>
         </tbody>
       </table>
@@ -342,10 +294,24 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code>
+          {
+            "results": [
+              {
+                "id": 7,
+                "calories": 0,
+                "carbs": 0,
+                "fat": 283,
+                "protein": 0,
+                "fiber": 0,
+                "image": "-",
+                "imageType": "jpg,jpeg",
+                "title": "teste de teste"
+              }
+            ],
+            "nr_results": 4
+          }
+        </code></pre>
         </div>
       </div>
 
@@ -400,11 +366,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Recipe Detailed Information</h1>
+      <h1>API - Recipe Detailed Information</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/detailedrecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/recipe_details/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -419,59 +385,11 @@
         </thead>
         <tbody>
           <tr>
-            <td>recipe_id</td>
+            <td>id_recipe</td>
             <td>int</td>
             <td><p>Recipe identification number</p></td>
             <td>true</td>
             <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">instructions</td>
-            <td>string</td> 
-            <td><p>Detailed instructions on how to cook/prepare the recipe, and what utencils to use</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>number of calories</p></td>
           </tr>
         </tbody>
       </table>
@@ -484,10 +402,42 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code>
+          {
+            "recipe": [
+              {
+                "id": "19",
+                "title": "Ramen",
+                "description": "muito bom, 99.9% saudavel",
+                "instructions": "caldo de carne, molho de soja, pe\u00e7o desculpa ",
+                "image_link": "-",
+                "public": 1,
+                "calories": 19,
+                "fat": 0,
+                "protein": 25,
+                "fiber": 0
+              },
+              {
+                "ingredients": [
+                  {
+                    "id_ingredient": 1,
+                    "name": "apple",
+                    "ingredient_calories": 100,
+                    "type": "fruit",
+                    "amount": 1
+                  },
+                  {
+                    "id_ingredient": 2,
+                    "name": "banana",
+                    "ingredient_calories": 56,
+                    "type": "fruit",
+                    "amount": 4
+                  }
+                ]
+              }
+            ]
+          }
+        </code></pre>
         </div>
       </div>
 
@@ -530,463 +480,9 @@
   </article>
 
       </div>
-  </section>	
+  </section>
 <!-- END OF SECITON (Detailed recipe) -->
 <!-- ****************************************************************************************************************************************************************************** -->
-
-
-
-<!-- ****************************************************************************************************************************************************************************** -->
-<!-- b_nutrients  -->
-  <section style="display:none;" id="b_nutrients">
-      <div id="api-User-GetUser">
-  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
-    <div class="pull-left">
-      <h1>Recipes by Nutrients</h1>
-    </div>
-    <div class="clearfix"></div>
-
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL&&/bnutrients</span></code></pre>
-
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 90%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>results</td>
-            <td>int</td>
-            <td><p>Number of expected results</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>minfiber</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a minimum percentage of fiber</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>maxfiber</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a maximum percentage of fiber</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>mincals</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a minimum percentage of calories</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>maxcals</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a maximum percentage of calories</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>minprotein</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a minimum percentage of protein</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>maxprotein</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a maximum percentage of protein</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>minfat</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a minimum percentage of fat</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>maxfat</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a maximum percentage of fat</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>mincarbs</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a minimum percentage of carbs</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>maxcarbs</td>
-            <td>string</td>
-            <td><p>Returns recipes based on a maximum percentage of carbs</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-		  <tr>
-            <td>sort</td>
-            <td>string</td>
-            <td>
-				<p>Returns sorted recipes based on nutrients</p>
-				<p>calories</p>
-				<p>protein</p>
-				<p>carbs</p>
-				<p>fiber</p>
-				<p>fat</p>				
-			</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>Calories number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image</td>
-            <td>string</td> 
-            <td><p>Image URL</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image_type</td>
-            <td>string</td> 
-            <td><p>Image file extention</p></td>
-          </tr>
-		  <tr>
-            <td class="code">recipe title</td>
-            <td>string</td> 
-            <td><p>Recipe page title</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="#">Success-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span>
-	{
-    "number": 2,
-    "results": [
-        {
-            "id": 715348,
-            "calories": 678,
-            "carbs": "69g",
-            "fat": "11g",
-            "protein": "35g",
-			"fiber": "33g"
-			"image":"https://****.jpg",
-            "imageType": "jpg",
-            "title": "Healthy Snickerdoodle Cookies”
-        },
-        {
-            "id": 715538,
-            "calories": 521,
-            "carbs": "69g",
-            "fat": "10g",
-            "protein": "35g",
-			"fiber": "33g",
-			"image":"https://****.jpg",
-            "imageType": "jpg",
-            "title":Bacon Vegetable Quiche "
-        }
-    ],
-    "totalResults": 32
-}
-</code></pre>
-        </div>
-      </div>
-
-      <!--<h2>Error 4xx</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">UserNotFound</td>
-            <td>
-            <p>The <code>id</code> of the User was not found.</p>
-
-
-                        </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="link">Error-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
-    </span><span class="pun">{</span><span class="pln">
-      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
-        </div>
-      </div>-->
-
-  </article>
-
-      </div>
-  </section>
-<!-- END OF SECITON (b_nutrients) -->
-<!-- ****************************************************************************************************************************************************************************** -->
-
-
-<!-- ****************************************************************************************************************************************************************************** -->
-
-<!-- SECITON (b_ingredients) -->
-<section style="display:none;" id="b_ingredients">
-      <div id="api-User-GetUser">
-  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
-    <div class="pull-left">
-      <h1>Recipes by Ingredients</h1>
-    </div>
-    <div class="clearfix"></div>
-
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL&&/bingredients</span></code></pre>
-
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 90%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>results</td>
-            <td>string</td>
-            <td><p>Number of expected results</p></td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>ingredients</td>
-            <td>string</td>
-            <td>
-				<p>Returns recipes based on ingredients</p>
-			</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>Calories number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image</td>
-            <td>string</td> 
-            <td><p>Image URL</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image_type</td>
-            <td>string</td> 
-            <td><p>Image file extention</p></td>
-          </tr>
-		  <tr>
-            <td class="code">recipe title</td>
-            <td>string</td> 
-            <td><p>Recipe page title</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="#">Success-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span>
-	{
-    "number": 2,
-    "results": [
-        {
-            "id": 715348,
-            "calories": 678,
-            "carbs": "69g",
-            "fat": "11g",
-            "protein": "35g",
-			"fiber": "33g"
-			"image":"https://****.jpg",
-            "imageType": "jpg",
-            "title": "Healthy Snickerdoodle Cookies”
-        },
-        {
-            "id": 715538,
-            "calories": 521,
-            "carbs": "69g",
-            "fat": "10g",
-            "protein": "35g",
-			"fiber": "33g",
-			"image":"https://****.jpg",
-            "imageType": "jpg",
-            "title":Bacon Vegetable Quiche "
-        }
-    ],
-    "totalResults": 32
-}
-</code></pre>
-        </div>
-      </div>
-
-      <!--<h2>Error 4xx</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">UserNotFound</td>
-            <td>
-            <p>The <code>id</code> of the User was not found.</p>
-
-
-                        </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="link">Error-Response:</a>
-          </li>
-      </ul>
-
-      <div class="tab-content">
-        <div class="tab-pane active" id="error-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">404</span><span class="pln"> </span><span class="typ">Not</span><span class="pln"> </span><span class="typ">Found</span><span class="pln">
-    </span><span class="pun">{</span><span class="pln">
-      </span><span class="str">"error"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"UserNotFound"</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
-        </div>
-      </div>-->
-
-  </article>
-
-      </div>
-  </section>
-  
-<!-- END OF SECTION( b_ingredients ) ****************************************************************************************************************************************************************************** -->
-
-
-
 
 
 
@@ -996,92 +492,12 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Random Recipe</h1>
+      <h1>API - Random Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/randomrecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/rand_recipes/</span></code></pre>
 
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 90%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>results</td>
-            <td>int</td>
-            <td><p>Number of expected results</p></td>
-            <td>true</td>
-            <td>1</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>Calories number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image</td>
-            <td>string</td> 
-            <td><p>Image URL</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image_type</td>
-            <td>string</td> 
-            <td><p>Image file extention</p></td>
-          </tr>
-		  <tr>
-            <td class="code">recipe title</td>
-            <td>string</td> 
-            <td><p>Recipe page title</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
             <a href="#">Success-Response:</a>
@@ -1092,23 +508,17 @@
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
     </span>
-	{
-    "number": 2,
-    "results": [
-        {
-            "id": 715348,
-            "calories": 678,
-            "carbs": "69g",
-            "fat": "11g",
-            "protein": "35g",
-			"fiber": "33g"
-			"image":"https://****.jpg",
-            "imageType": "jpg",
-            "title": "Healthy Snickerdoodle Cookies”
-        },
-    ],
-    "totalResults": 32
-}
+    {
+      "id": 7,
+      "calories": 0,
+      "carbs": 0,
+      "fat": 283,
+      "protein": 0,
+      "fiber": 0,
+      "image": "-",
+      "imageType": "jpg,jpeg",
+      "title": "teste de teste"
+    }
 </code></pre>
         </div>
       </div>
@@ -1153,7 +563,7 @@
 
       </div>
   </section>
-  
+
 <!-- END OF SECITON (random recipe) -->
 <!-- ****************************************************************************************************************************************************************************** -->
 
@@ -1165,11 +575,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Insert Recipe</h1>
+      <h1>API - Insert Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="post" style=""><code><span class="pln">URL??/insertrecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="post" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/create_recipe/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1191,14 +601,16 @@
             <td>null</td>
           </tr>
           <tr>
-            <td>ingredients</td>
+            <td>id</td>
             <td>array</td>
-            <td>
-				<p>name 	(string | required)</p>
-				<p>amount	(number | required)</p>
-				<p>posunit	(string	| optional)</p>
-				<p>type 	(string	| optional)</p>
-			</td>
+            <td><p>Ingredients id (ex: [2,42,14])</p></td>
+            <td>true</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>amount</td>
+            <td>array</td>
+            <td><p>ingredients amount (ex: [13,200,98]) each index is associated with id array index</p></td>
             <td>true</td>
             <td>null</td>
           </tr>
@@ -1257,7 +669,7 @@
             <td>null</td>
           </tr>
 		  <tr>
-            <td>image_url</td>
+            <td>url_image</td>
             <td>string</td>
             <td>
 				<p>Image ilustrating finished recipe</p>
@@ -1266,7 +678,7 @@
             <td>null</td>
           </tr>
 		  <tr>
-            <td>visibility</td>
+            <td>visible</td>
             <td>string</td>
             <td>
 				<p>Variable choosing if recipe is publicly available to other user</p>
@@ -1274,27 +686,18 @@
             <td>false</td>
             <td>0</td>
           </tr>
+          <tr>
+                <td>description</td>
+                <td>string</td>
+                <td>
+    				<p>a litle description about the recipe</p>
+    			</td>
+                <td>false</td>
+                <td>null</td>
+              </tr>
         </tbody>
       </table>
 
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">success</td>
-            <td>miniint</td> 
-            <td><p>Feedback on insertion success</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
             <a href="#">Success-Response:</a>
@@ -1306,7 +709,7 @@
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
     </span>
 	{
-		"success": true,
+		"status": 200, 'Message': 'Recipe created [recipe_id = 19]'
 	}
 </code></pre>
         </div>
@@ -1323,7 +726,7 @@
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">201</span><span class="pln"> ERROR
     </span>
 	{
-		"success": false,		
+		"success": false,
 		"error": {
 			"code": 123,
 			"message": "Error occurred on insertion"
@@ -1384,11 +787,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Insert Recipe</h1>
+      <h1>API - Update Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="put" style=""><code><span class="pln">URL??/updaterecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="put" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/update_recipe/19</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1402,13 +805,6 @@
           </tr>
         </thead>
         <tbody>
-			<tr>
-				<td>recipe_id</td>
-				<td>int</td>
-				<td><p>Recipe identification number</p></td>
-				<td>true</td>
-				<td>null</td>
-          </tr>
           <tr>
             <td>title</td>
             <td>string</td>
@@ -1417,14 +813,16 @@
             <td>null</td>
           </tr>
           <tr>
-            <td>ingredients</td>
+            <td>id_ingredients</td>
             <td>array</td>
-            <td>
-				<p>name 	(string | required)</p>
-				<p>amount	(number | required)</p>
-				<p>posunit	(string	| optional)</p>
-				<p>type 	(string	| optional)</p>
-			</td>
+            <td><p>id of ingredients to be updated</p></td>
+            <td>false</td>
+            <td>null</td>
+          </tr>
+          <tr>
+            <td>amount</td>
+            <td>array</td>
+            <td><p>quantity to be updated on ingredients</p></td>
             <td>false</td>
             <td>null</td>
           </tr>
@@ -1483,7 +881,7 @@
             <td>null</td>
           </tr>
 		  <tr>
-            <td>image_url</td>
+            <td>image_link</td>
             <td>string</td>
             <td>
 				<p>Image ilustrating finished recipe</p>
@@ -1492,7 +890,7 @@
             <td>null</td>
           </tr>
 		  <tr>
-            <td>visibility</td>
+            <td>visible</td>
             <td>string</td>
             <td>
 				<p>Variable choosing if recipe is publicly available to other user</p>
@@ -1503,24 +901,6 @@
         </tbody>
       </table>
 
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">success</td>
-            <td>miniint</td> 
-            <td><p>Feedback on update success</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
             <a href="#">Success-Response:</a>
@@ -1532,28 +912,7 @@
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
     </span>
 	{
-		"success": true,
-	}
-</code></pre>
-        </div>
-      </div>
-
-		<ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="#">Error-Response:</a>
-          </li>
-		</ul>
-
-		<div class="tab-content">
-        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">201</span><span class="pln"> ERROR
-    </span>
-	{
-		"success": false,		
-		"error": {
-			"code": 123,
-			"message": "Error occurred on update"
-		}
+		"status": 200, "Message": "Recipe Updated ['recipe_id':19, 'updated_at': '2020-12-29' ]"
 	}
 </code></pre>
         </div>
@@ -1611,52 +970,12 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>Insert Recipe</h1>
+      <h1>API - Delete Recipe</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">URL??/deleterecipe</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/delete_recipe/19</span></code></pre>
 
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 90%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-			<tr>
-				<td>recipe_id</td>
-				<td>int</td>
-				<td><p>Recipe identification number</p></td>
-				<td>true</td>
-				<td>null</td>
-          </tr> 
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">success</td>
-            <td>miniint</td> 
-            <td><p>Feedback on delete success</p></td>
-          </tr>
-        </tbody>
-      </table>
-	  
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
             <a href="#">Success-Response:</a>
@@ -1668,28 +987,7 @@
         <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
     </span>
 	{
-		"success": true,
-	}
-</code></pre>
-        </div>
-      </div>
-
-		<ul class="nav nav-tabs nav-tabs-examples">
-          <li class="active">
-            <a href="#">Error-Response:</a>
-          </li>
-		</ul>
-
-		<div class="tab-content">
-        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">201</span><span class="pln"> ERROR
-    </span>
-	{
-		"success": false,		
-		"error": {
-			"code": 123,
-			"message": "Error occurred on delete"
-		}
+		"success": 204, "Message": "Successful Deleted"
 	}
 </code></pre>
         </div>
@@ -1745,12 +1043,12 @@
   <section style="display:none;" id="s_ingredient">
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
-    <div class="pull-left">	
-      <h1>Search Ingredients</h1>
+    <div class="pull-left">
+      <h1>API - Search Ingredients</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL??/searchingredient</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/ingredients/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1764,77 +1062,19 @@
           </tr>
         </thead>
         <tbody>
+		  <tr>
+            <td>name</td>
+            <td>string</td>
+            <td><p>Partial name of wanted ingredient</p></td>
+            <td>false</td>
+            <td>null</td>
+          </tr>
           <tr>
             <td>results</td>
             <td>int</td>
             <td><p>Number of expected results</p></td>
             <td>false</td>
             <td>null</td>
-          </tr>
-		  <tr>
-            <td>query</td>
-            <td>string</td>
-            <td><p>Partial name of wanted ingredient</p></td>
-            <td>false</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success Fields</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">recipe_id</td>
-            <td>int</td> 
-            <td><p>Recipe identification number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">calories</td>
-            <td>int</td> 
-            <td><p>Calories number</p></td>
-          </tr>
-		  <tr>
-            <td class="code">carbs</td>
-            <td>string</td> 
-            <td><p>Quantity of carbs</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fat</td>
-            <td>string</td> 
-            <td><p>Quantity of fat</p></td>
-          </tr>
-		  <tr>
-            <td class="code">protein</td>
-            <td>string</td> 
-            <td><p>Quantity of protein</p></td>
-          </tr>
-		  <tr>
-            <td class="code">fiber</td>
-            <td>string</td> 
-            <td><p>Quantity of fiber</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image</td>
-            <td>string</td> 
-            <td><p>Image URL</p></td>
-          </tr>
-		  <tr>
-            <td class="code">image_type</td>
-            <td>string</td> 
-            <td><p>Image file extention</p></td>
-          </tr>
-		  <tr>
-            <td class="code">recipe title</td>
-            <td>string</td> 
-            <td><p>Recipe page title</p></td>
           </tr>
         </tbody>
       </table>
@@ -1847,10 +1087,33 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code>
+          {
+            "content": [
+              {
+                "id": 1,
+                "name": "apple",
+                "type": "fruit"
+              },
+              {
+                "id": 2,
+                "name": "banana",
+                "type": "fruit"
+              },
+              {
+                "id": 3,
+                "name": "Tomate",
+                "type": "fruit"
+              },
+              {
+                "id": 4,
+                "name": "canela",
+                "type": "p\u00f3 m\u00e1gico"
+              }
+            ],
+            "nr_results": 4
+          }
+        </code></pre>
         </div>
       </div>
 
@@ -1905,11 +1168,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>API - Ingredient Detailed Info</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/ingredient_details/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -1924,38 +1187,11 @@
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
+            <td>ingredient_id</td>
+            <td>int</td>
+            <td><p>ingredient identification number</p></td>
             <td>true</td>
             <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
           </tr>
         </tbody>
       </table>
@@ -1968,10 +1204,23 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code>
+          {
+            "content": [
+              {
+                "recipes": [],
+                "ingredient": {
+                  "id": 2,
+                  "name": "banana",
+                  "calories": 56,
+                  "type": "fruit",
+                  "created_at": "Wed, 23 Dec 2020 00:00:00 GMT"
+                }
+              }
+            ],
+            "total_results": 1
+          }
+        </code></pre>
         </div>
       </div>
 
@@ -2027,11 +1276,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>API - Insert Ingredient</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="post" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/create_ingredient/</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -2048,36 +1297,23 @@
           <tr>
             <td>name</td>
             <td>string</td>
-            <td>user personal name</td>
+            <td>ingredient name</td>
             <td>true</td>
             <td>null</td>
           </tr>
           <tr>
-            <td>email</td>
+            <td>type</td>
             <td>string</td>
-            <td>user personal email</td>
+            <td>type of ingredient if fruit, vegetable for example</td>
             <td>true</td>
             <td>null</td>
           </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
           <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td>calories</td>
+            <td>number</td>
+            <td>ingredient calories</td>
+            <td>false</td>
+            <td>null</td>
           </tr>
         </tbody>
       </table>
@@ -2090,10 +1326,12 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            {
+          		"success": 200, "Message": "Ingredient Created"
+          	}
+          </code></pre>
         </div>
       </div>
 
@@ -2151,7 +1389,7 @@
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
+    <pre class="prettyprint language-html prettyprinted" data-type="put" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/update_ingredient/2</span></code></pre>
 
       <h2>Parameter</h2>
       <table>
@@ -2168,36 +1406,23 @@
           <tr>
             <td>name</td>
             <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
+            <td>ingredient name</td>
+            <td>false</td>
             <td>null</td>
           </tr>
           <tr>
-            <td>email</td>
+            <td>type</td>
             <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
+            <td>ingrediet type if fruit, vegetable for example</td>
+            <td>false</td>
             <td>null</td>
           </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
           <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
+            <td>calories</td>
+            <td>number</td>
+            <td>ingredient calories</td>
+            <td>false</td>
+            <td>null</td>
           </tr>
         </tbody>
       </table>
@@ -2210,10 +1435,12 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            {
+          		"success": 200, "Message": "successful updated!"
+          	}
+          </code></pre>
         </div>
       </div>
 
@@ -2267,60 +1494,11 @@
       <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>API - Delete Ingredient</h1>
     </div>
     <div class="clearfix"></div>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">URL/?name&email</span></code></pre>
-
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
-          </tr>
-        </tbody>
-      </table>
+    <pre class="prettyprint language-html prettyprinted" data-type="delete" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/delete_ingredient/2</span></code></pre>
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
@@ -2330,10 +1508,12 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            {
+          		"success": 204, "Message": "Ingredient deleted!"
+          	}
+          </code></pre>
         </div>
       </div>
 
@@ -2381,73 +1561,125 @@
 <!-- ****************************************************************************************************************************************************************************** -->
 
 
-<!-- ****************************************************************************************************************************************************************************** -->
-  <!-- Amount explanation -->
-  <section style="display:none;" id="cv_amounts">
-      <div id="api-User-GetUser">
 
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- search beer  -->
+  <section style="display:none;" id="s_beers">
+      <div id="api-User-GetUser">
   <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
     <div class="pull-left">
-      <h1>API - Authentication</h1>
+      <h1>API - Search Beers</h1>
     </div>
     <div class="clearfix"></div>
 
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/beers/</span></code></pre>
 
-    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">?name&email</span></code></pre>
+    <h2>Parameter</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%">Field</th>
+          <th style="width: 20%">Type</th>
+          <th style="width: 20%">Description</th>
+          <th style="width: 20%">required</th>
+          <th style="width: 20%">default value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>abv_gt</td>
+          <td>number</td>
+          <td>Returns all beers with ABV greater than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>abv_lt</td>
+          <td>number</td>
+          <td>Returns all beers with ABV less than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>ibu_gt</td>
+          <td>number</td>
+          <td>Returns all beers with IBU greater than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>ibu_lt</td>
+          <td>number</td>
+          <td>Returns all beers with IBU less than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>ebc_gt</td>
+          <td>number</td>
+          <td>Returns all beers with EBC greater than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>ebc_lt</td>
+          <td>number</td>
+          <td>Returns all beers with EBC less than the supplied number</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>beer_name</td>
+          <td>string</td>
+          <td>Returns all beers matching the supplied name (this will match partial strings as well so e.g punk will return Punk IPA), if you need to add spaces just add an underscore (_).</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>yeast</td>
+          <td>string</td>
+          <td>Returns all beers matching the supplied yeast name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>brewed_before</td>
+          <td>date</td>
+          <td>Returns all beers brewed before this date, the date format is mm-yyyy e.g 10-2011</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>brewed_after</td>
+          <td>date</td>
+          <td>Returns all beers brewed after this date, the date format is mm-yyyy e.g 10-2011</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>hops</td>
+          <td>string</td>
+          <td>Returns all beers matching the supplied hops name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>malt</td>
+          <td>string</td>
+          <td>Returns all beers matching the supplied malt name, this performs a fuzzy match, if you need to add spaces just add an underscore (_).</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+        <tr>
+          <td>ids</td>
+          <td>string (id|id|...)</td>
+          <td>Returns all beers matching the supplied ID's. You can pass in multiple ID's by separating them with a | symbol.</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+      </tbody>
+    </table>
 
-
-
-
-
-
-      <h2>Parameter</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 20%">Field</th>
-            <th style="width: 20%">Type</th>
-            <th style="width: 20%">Description</th>
-            <th style="width: 20%">required</th>
-            <th style="width: 20%">default value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>name</td>
-            <td>string</td>
-            <td>user personal name</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-          <tr>
-            <td>email</td>
-            <td>string</td>
-            <td>user personal email</td>
-            <td>true</td>
-            <td>null</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>Success 200</h2>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 30%">Field</th>
-            <th style="width: 10%">Type</th>
-            <th style="width: 70%">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="code">apiKey</td>
-              <td>
-                String
-              </td>
-            <td><p>User apiKey wich concedes permission to use our api service</p></td>
-          </tr>
-        </tbody>
-      </table>
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
@@ -2457,10 +1689,133 @@
 
       <div class="tab-content">
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
-        <pre class="prettyprint language-json prettyprinted" data-type="json" style=""><code><span class="pln">    HTTP</span><span class="pun">/</span><span class="lit">1.1</span><span class="pln"> </span><span class="lit">200</span><span class="pln"> OK
-    </span><span class="pun">{</span><span class="pln">
-    </span><span class="str">"apiKey"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"uhqw-jje8-1jHj-90Ui"</span><span class="pun">,</span><span class="pln">
-    </span><span class="pun">}</span></code></pre>
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            [
+              {
+                "id": 1,
+                "name": "Buzz",
+                "tagline": "A Real Bitter Experience.",
+                "first_brewed": "09/2007",
+                "description": "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+                "image_url": "https://images.punkapi.com/v2/keg.png",
+                "abv": 4.5,
+                "ibu": 60,
+                "target_fg": 1010,
+                "target_og": 1044,
+                "ebc": 20,
+                "srm": 10,
+                "ph": 4.4,
+                "attenuation_level": 75,
+                "volume": {
+                  "value": 20,
+                  "unit": "litres"
+                },
+                "boil_volume": {
+                  "value": 25,
+                  "unit": "litres"
+                },
+                "method": {
+                  "mash_temp": [
+                    {
+                      "temp": {
+                        "value": 64,
+                        "unit": "celsius"
+                      },
+                      "duration": 75
+                    }
+                  ],
+                  "fermentation": {
+                    "temp": {
+                      "value": 19,
+                      "unit": "celsius"
+                    }
+                  },
+                  "twist": null
+                },
+                "ingredients": {
+                  "malt": [
+                    {
+                      "name": "Maris Otter Extra Pale",
+                      "amount": {
+                        "value": 3.3,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Caramalt",
+                      "amount": {
+                        "value": 0.2,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Munich",
+                      "amount": {
+                        "value": 0.4,
+                        "unit": "kilograms"
+                      }
+                    }
+                  ],
+                  "hops": [
+                    {
+                      "name": "Fuggles",
+                      "amount": {
+                        "value": 25,
+                        "unit": "grams"
+                      },
+                      "add": "start",
+                      "attribute": "bitter"
+                    },
+                    {
+                      "name": "First Gold",
+                      "amount": {
+                        "value": 25,
+                        "unit": "grams"
+                      },
+                      "add": "start",
+                      "attribute": "bitter"
+                    },
+                    {
+                      "name": "Fuggles",
+                      "amount": {
+                        "value": 37.5,
+                        "unit": "grams"
+                      },
+                      "add": "middle",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "First Gold",
+                      "amount": {
+                        "value": 37.5,
+                        "unit": "grams"
+                      },
+                      "add": "middle",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Cascade",
+                      "amount": {
+                        "value": 37.5,
+                        "unit": "grams"
+                      },
+                      "add": "end",
+                      "attribute": "flavour"
+                    }
+                  ],
+                  "yeast": "Wyeast 1056 - American Ale\u2122"
+                },
+                "food_pairing": [
+                  "Spicy chicken tikka masala",
+                  "Grilled chicken quesadilla",
+                  "Caramel toffee cake"
+                ],
+                "brewers_tips": "The earthy and floral aromas from the hops can be overpowering. Drop a little Cascade in at the end of the boil to lift the profile with a bit of citrus.",
+                "contributed_by": "Sam Mason <samjbmason>"
+              }
+            ]
+          </code></pre>
         </div>
       </div>
 
@@ -2504,7 +1859,472 @@
 
       </div>
   </section>
-<!-- END PAGE (AMOUNT explanation) -->
+<!-- END OF SECITON (search beer) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- beer details  -->
+  <section style="display:none;" id="d_beer">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Beer Detailed Info</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/beers/12</span></code></pre>
+
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="link">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            [
+              {
+                "id": 12,
+                "name": "Arcade Nation",
+                "tagline": "Seasonal Black IPA.",
+                "first_brewed": "12/2015",
+                "description": "Running the knife-edge between an India Pale Ale and a Stout, this particular style is one we truly love. Black IPAs are a great showcase for the skill of our brew team, balancing so many complex and twisting flavours in the same moment. The citrus, mango and pine from the hops \u2013 three of our all-time favourites \u2013 play off against the roasty dryness from the malt bill at each and every turn.",
+                "image_url": "https://images.punkapi.com/v2/12.png",
+                "abv": 5.3,
+                "ibu": 60,
+                "target_fg": 1012,
+                "target_og": 1052,
+                "ebc": 200,
+                "srm": 100,
+                "ph": 4.2,
+                "attenuation_level": 77,
+                "volume": {
+                  "value": 20,
+                  "unit": "litres"
+                },
+                "boil_volume": {
+                  "value": 25,
+                  "unit": "litres"
+                },
+                "method": {
+                  "mash_temp": [
+                    {
+                      "temp": {
+                        "value": 65,
+                        "unit": "celsius"
+                      },
+                      "duration": null
+                    }
+                  ],
+                  "fermentation": {
+                    "temp": {
+                      "value": 19,
+                      "unit": "celsius"
+                    }
+                  },
+                  "twist": null
+                },
+                "ingredients": {
+                  "malt": [
+                    {
+                      "name": "Pale Ale",
+                      "amount": {
+                        "value": 3.13,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Caramalt",
+                      "amount": {
+                        "value": 0.25,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Crystal 150",
+                      "amount": {
+                        "value": 0.18,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Carafa Special Malt Type 1",
+                      "amount": {
+                        "value": 0.25,
+                        "unit": "kilograms"
+                      }
+                    }
+                  ],
+                  "hops": [
+                    {
+                      "name": "Simcoe",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "start",
+                      "attribute": "bitter"
+                    },
+                    {
+                      "name": "Simcoe",
+                      "amount": {
+                        "value": 19,
+                        "unit": "grams"
+                      },
+                      "add": "middle",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Simcoe",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "end",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Amarillo",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "end",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Citra",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "end",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Simcoe",
+                      "amount": {
+                        "value": 62.5,
+                        "unit": "grams"
+                      },
+                      "add": "dry hop",
+                      "attribute": "aroma"
+                    },
+                    {
+                      "name": "Amarillo",
+                      "amount": {
+                        "value": 62.5,
+                        "unit": "grams"
+                      },
+                      "add": "dry hop",
+                      "attribute": "aroma"
+                    },
+                    {
+                      "name": "Citra",
+                      "amount": {
+                        "value": 62.5,
+                        "unit": "grams"
+                      },
+                      "add": "dry hop",
+                      "attribute": "aroma"
+                    }
+                  ],
+                  "yeast": "Wyeast 1056 - American Ale\u2122"
+                },
+                "food_pairing": [
+                  "King prawn kebabs",
+                  "Halibut with a mango and tomato salad",
+                  "Mint chocloate ice cream"
+                ],
+                "brewers_tips": "Be as accurate as possible when weighing out your malts to ensure you strike the right balance.",
+                "contributed_by": "Sam Mason <samjbmason>"
+              }
+            ]
+          </code></pre>
+        </div>
+      </div>
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (beer details) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- random beer  -->
+  <section style="display:none;" id="r_beer">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Random Beer</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/beers/random</span></code></pre>
+
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="link">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            [
+              {
+                "id": 77,
+                "name": "Hobo Pop",
+                "tagline": "2013 Prototype Rye Pale Ale.",
+                "first_brewed": "11/2013",
+                "description": "Brewed with mountains of Wheat, Rye, Cara and Crystal malts, fermented with an American ale yeast and bittered with Amarillo & Centennial, this 4.2% beer is what happens if something classy like a European wheat beer goes to live in Vegas. Zingy citrus hops and a punchy bitterness bolster this low ABV pale.",
+                "image_url": "https://images.punkapi.com/v2/77.png",
+                "abv": 4.2,
+                "ibu": 50,
+                "target_fg": 1010,
+                "target_og": 1042,
+                "ebc": 30,
+                "srm": 15,
+                "ph": 4.4,
+                "attenuation_level": 76.2,
+                "volume": {
+                  "value": 20,
+                  "unit": "litres"
+                },
+                "boil_volume": {
+                  "value": 25,
+                  "unit": "litres"
+                },
+                "method": {
+                  "mash_temp": [
+                    {
+                      "temp": {
+                        "value": 65,
+                        "unit": "celsius"
+                      },
+                      "duration": 75
+                    }
+                  ],
+                  "fermentation": {
+                    "temp": {
+                      "value": 19,
+                      "unit": "celsius"
+                    }
+                  },
+                  "twist": null
+                },
+                "ingredients": {
+                  "malt": [
+                    {
+                      "name": "Extra Pale",
+                      "amount": {
+                        "value": 2.06,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Caramalt",
+                      "amount": {
+                        "value": 0.63,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Crystal 150",
+                      "amount": {
+                        "value": 0.25,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Wheat",
+                      "amount": {
+                        "value": 0.5,
+                        "unit": "kilograms"
+                      }
+                    },
+                    {
+                      "name": "Rye",
+                      "amount": {
+                        "value": 0.19,
+                        "unit": "kilograms"
+                      }
+                    }
+                  ],
+                  "hops": [
+                    {
+                      "name": "Centennial",
+                      "amount": {
+                        "value": 2.5,
+                        "unit": "grams"
+                      },
+                      "add": "start",
+                      "attribute": "bitter"
+                    },
+                    {
+                      "name": "Amarillo",
+                      "amount": {
+                        "value": 2.5,
+                        "unit": "grams"
+                      },
+                      "add": "start",
+                      "attribute": "bitter"
+                    },
+                    {
+                      "name": "Centennial",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "middle",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Amarillo",
+                      "amount": {
+                        "value": 12.5,
+                        "unit": "grams"
+                      },
+                      "add": "middle",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Centennial",
+                      "amount": {
+                        "value": 25,
+                        "unit": "grams"
+                      },
+                      "add": "end",
+                      "attribute": "flavour"
+                    },
+                    {
+                      "name": "Amarillo",
+                      "amount": {
+                        "value": 150,
+                        "unit": "grams"
+                      },
+                      "add": "dry hop",
+                      "attribute": "aroma"
+                    },
+                    {
+                      "name": "Centennial",
+                      "amount": {
+                        "value": 125,
+                        "unit": "grams"
+                      },
+                      "add": "dry hop",
+                      "attribute": "aroma"
+                    }
+                  ],
+                  "yeast": "Wyeast 1056 - American Ale\u2122"
+                },
+                "food_pairing": [
+                  "Mozzarella and tomato baked chicken",
+                  "Spiced shrimp salad",
+                  "Strawberry cheescake"
+                ],
+                "brewers_tips": "Add the rye and wheat malt evenly through the mash.",
+                "contributed_by": "Ali Skinner <AliSkinner>"
+              }
+            ]
+          </code></pre>
+        </div>
+      </div>
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (random beer) -->
+<!-- ****************************************************************************************************************************************************************************** -->
+
+
+
+<!-- ****************************************************************************************************************************************************************************** -->
+<!-- recomended beers -->
+  <section style="display:none;" id="rc_beer">
+      <div id="api-User-GetUser">
+  <article id="api-User-GetUser-0.0.0" data-group="User" data-name="GetUser" data-version="0.0.0">
+    <div class="pull-left">
+      <h1>API - Recomend Beer</h1>
+    </div>
+    <div class="clearfix"></div>
+
+    <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://127.0.0.1:5000/api/v1/beers/chicken</span></code></pre>
+
+
+      <ul class="nav nav-tabs nav-tabs-examples">
+          <li class="active">
+            <a href="link">Success-Response:</a>
+          </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
+        <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
+          <code>
+            {
+              "food": "chicken",
+              "beers": {
+                "results": 25,
+                "beer_info": [
+                  {
+                    "id": 1,
+                    "name": "Buzz",
+                    "description": "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+                    "abv": 4.5,
+                    "first_brewed": "09/2007",
+                    "fermentation": "19 celsius"
+                  },
+                  {
+                    "id": 3,
+                    "name": "Berliner Weisse With Yuzu - B-Sides",
+                    "description": "Japanese citrus fruit intensifies the sour nature of this German classic.",
+                    "abv": 4.2,
+                    "first_brewed": "11/2015",
+                    "fermentation": "21 celsius"
+                  },
+                  {
+                    "id": 11,
+                    "name": "Misspent Youth",
+                    "description": "The brainchild of our small batch brewer, George Woods. A dangerously drinkable milk sugar- infused Scotch Ale.",
+                    "abv": 7.3,
+                    "first_brewed": "04/2013",
+                    "fermentation": "19 celsius"
+                  },
+                  {
+                    "id": 18,
+                    "name": "Russian Doll \u2013 India Pale Ale",
+                    "description": "The levels of hops vary throughout the range. We love hops, so all four beers are big, bitter badasses, but by tweaking the amount of each hop used later in the boil and during dry- hopping, we can balance the malty backbone with some unexpected flavours. Simcoe is used in the whirlpool for all four beers, and yet still lends different characters to each",
+                    "abv": 6,
+                    "first_brewed": "08/2014",
+                    "fermentation": "19 celsius"
+                  }
+                ]
+              }
+            }
+          </code></pre>
+        </div>
+      </div>
+
+  </article>
+
+      </div>
+  </section>
+<!-- END OF SECITON (recomended beers) -->
+<!-- ****************************************************************************************************************************************************************************** -->
 
 
 
@@ -2521,11 +2341,11 @@
 
 
 
-<script data-main="main.js" src="./static/require.min.js"></script>
+<script data-main="./static/main.js" src="./static/require.min.js"></script>
 <script>
 
 function pagination(id){
-  var ids = ['intro','auth','cv_amounts','s_recipe','d_recipe','b_nutrients','b_ingredients','rand_recipe','insert_recipe','upd_recipe','del_recipe','s_ingredient','d_ingredient','insert_ingredient','upd_ingredient','del_ingredient'];
+  var ids = ['intro','auth','s_recipe','d_recipe','rand_recipe','insert_recipe','upd_recipe','del_recipe','s_ingredient','d_ingredient','insert_ingredient','upd_ingredient','del_ingredient','s_beers','d_beer','r_beer','rc_beer'];
 
     for(var i = 0; i < ids.length ; i++){
       if( !id.localeCompare(ids[i])) document.getElementById(ids[i]).style.display = "";

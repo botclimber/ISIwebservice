@@ -5,8 +5,10 @@ from sec import Security
 from auth import Auth
 from recipes import Recipes
 from ingredients import Ingredients
+from beers import Beers
 
 app = Flask(__name__)
+app.config['JSON_SORT_KEYS'] = False
 
 db = pymysql.connect("localhost", "root", "", "quickrecipes")
 sec = Security(db)
@@ -23,7 +25,7 @@ def index():
 """
 	With this app.route we check and create a new user if doesn't exist
 """
-@app.route('/api/v1/auth/name=<name>&email=<email>', methods=['GET'])
+@app.route('/api/v1/auth/<name>&<email>', methods=['GET'])
 def auth(name, email):
 	"""
 
@@ -124,6 +126,63 @@ def g_ingredients_details():
 
 	return jsonify(response)
 
+
+
+
+# BEERS
+@app.route('/api/v1/beers/', methods=['GET'])
+def beers():
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Beers()
+		response = obj.gBeers(request.args)
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
+@app.route('/api/v1/beers/<int:beer_id>', methods=['GET'])
+def g_beer_details(beer_id):
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Beers()
+		response = obj.gBeerDetails(beer_id)
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
+@app.route('/api/v1/beers/random', methods=['GET'])
+def random_beer():
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Beers()
+		response = obj.gRandomBeer()
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
+
+
+
+@app.route('/api/v1/beers/<food_name>', methods=['GET'])
+def w_beers_better(food_name):
+
+	# call method to verify if apiKey exists
+	if sec.verify('api_key', request.args.get('apiKey')):
+		obj = Beers()
+		response = obj.wBeersBetter(food_name)
+	else:
+		response = {'status': '400', 'message': 'invalid apiKey'}
+
+	return jsonify(response)
 
 
 # *****************
