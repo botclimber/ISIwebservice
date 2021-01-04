@@ -1,11 +1,11 @@
 from flask import Flask, request, jsonify, render_template
 import pymysql
 
-from sec import Security
-from auth import Auth
-from recipes import Recipes
-from ingredients import Ingredients
-from beers import Beers
+from res.sec import Security
+from res.auth import Auth
+from res.controllers.recipes import Recipes
+from res.controllers.ingredients import Ingredients
+from res.controllers.beers import Beers
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
