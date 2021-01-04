@@ -53,7 +53,7 @@ and u can start using it. first page will be the api documentation:
 	- [?] update ingredient done
 	- [?] delete ingredient undone
 
-* Beers: [<p style="font-size:10pt;">data from external api</p>]
+* Beers: [data from external api]
 	- [x] get all beers done
 	- [x] get beer details done
 	- [x] get random beer done
