@@ -1,10 +1,10 @@
 # some librarys project required
 # to install run: pip3 install -r requirements.txt 
 ###### requirements without version specified ######
-datetime
 numpy
+mysql.connector
+requests
+datetime
 
 ###### requirements with verison specified ######
 flask == 1.1.2
-pymysql == 0.10.1
-

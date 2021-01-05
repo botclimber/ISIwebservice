@@ -1,5 +1,5 @@
-import secrets
 import datetime
+import random
 
 # Auth Managment
 class Auth:
@@ -27,7 +27,10 @@ class Auth:
 
 		:return: a string with the user apikey
 		"""
-		return secrets.token_urlsafe(10)			
+		sample_letters = 'abcdefghijqlmnopqrstuvxz123456789'
+		result_str = ''.join((random.choice(sample_letters) for i in range(10)))
+
+		return result_str 		
 
 	def cUser(self, key):
 		"""
