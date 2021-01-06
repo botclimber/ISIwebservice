@@ -1,7 +1,10 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, make_response
 import mysql.connector
 from mysql.connector import errorcode
+import jwt
+import datetime
 
+from functools import wraps
 from res.sec import Security
 from res.auth import Auth
 from res.controllers.recipes import Recipes
@@ -10,20 +13,21 @@ from res.controllers.beers import Beers
 
 app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
-
-config = {
-'host':'qkrecipes.mysql.database.azure.com',
-'user':'sorte@qkrecipes',
-'password':'wegotFlow21',
-'database':'quickrecipes',
-}
+app.config['SECRET_KEY'] = '21savageinjapan'
 
 #config = {
-#'host':'localhost',
-#'user':'root',
-#'password':'',
+#'host':'qkrecipes.mysql.database.azure.com',
+#'user':'sorte@qkrecipes',
+#'password':'wegotFlow21',
 #'database':'quickrecipes',
 #}
+
+config = {
+'host':'localhost',
+'user':'root',
+'password':'',
+'database':'quickrecipes',
+}
 
 # Construct connection string
 try:
@@ -47,11 +51,19 @@ def index():
 	return render_template("api-doc.html")
 
 
+
+
+
+# ****************************
+# *          AUTH            *
+# ****************************
 """
 	With this app.route we check and create a new user if doesn't exist
 """
-@app.route('/api/v1/auth/<name>&<email>', methods=['GET'])
-def auth(name, email):
+
+# CREATE USER
+@app.route('/api/v1/auth/', methods=['POST'])
+def auth():
 	"""
 
 	:param name: user name
@@ -59,15 +71,57 @@ def auth(name, email):
 
 	:return: a key
 	"""
-	if not sec.verify('email', email):
-		obj = Auth(name, email, db)  # instance obj
-		key = obj.cApiKey()  # create ApiKey for this user
-		obj.cUser(key)  # create record in DB
+	data = request.get_json()
+	obj = Auth(db, data['email'], data['password'], data['name']) if 'user_type' not in data else Auth(db, data['email'], data['password'], data['name'], data['user_type'])  # instance obj
+	response = obj.cUser()  # create record in DB
 
-	else:
-		key = {'status': 500, 'message':'already exists an apiKey for this email'}
+	return jsonify(response)
 
-	return jsonify(key)
+
+# LOGIN 
+@app.route('/api/v1/login/')
+def login():
+	
+	auth = request.authorization
+	if not auth or not auth.username or not auth.password:
+		return make_response('could not verify', 401, {'wwww-Authenticate':'Basic realm="Login required!"'})
+
+	user_obj = Auth(db, auth.username, auth.password)
+	user = user_obj.get_user()	
+	
+	if not user:		
+		return make_response('could not verify', 401, {'wwww-Authenticate':'Basic realm="Login required!"'})
+	
+	if user_obj.check_password(user['password']):
+		token = jwt.encode({'public_id': user['public_id'], 'exp': datetime.datetime.utcnow()+datetime.timedelta(minutes=30) }, app.config['SECRET_KEY'], algorithm="HS256")
+		return jsonify({'token': token})
+	
+	return make_response('could not verify', 401, {'wwww-Authenticate':'Basic realm="Login required!"'})
+
+
+# SESSION VERIFICATION
+def token_required(f):
+	@wraps(f)
+	def decorated(*args, **kwargs):
+		token = None
+		
+		if 'x-access-token' in request.headers:
+			token = request.headers['x-access-token']
+
+		if not token:
+			return jsonify({'message': 'Token is missing!'}), 401
+				
+		try:
+			data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+			current_user = Auth(db).get_by_pi(data['public_id'])
+		except:
+			return jsonify({'message': 'Token is invalid'}), 401
+
+		return f(current_user, *args, **kwargs)
+	
+	return decorated
+
+
 
 
 
@@ -79,14 +133,11 @@ def auth(name, email):
 	With this app.route we can get all recipes with or without filters
 """
 @app.route('/api/v1/recipes/', methods=['GET'])
-def recipes():
+@token_required
+def recipes(current_user):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Recipes(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gRecipes()
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Recipes(db, current_user['user_id'], request.args)
+	response = obj.gRecipes()
 
 	return jsonify(response)
 
@@ -94,60 +145,46 @@ def recipes():
 
 
 @app.route('/api/v1/rand_recipes/', methods=['GET'])
-def g_random_recipe():
+@token_required
+def g_random_recipe(current_user):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Recipes(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		recipes = obj.gRecipes() # get all recipes
-		response = obj.gRandomRecipes(recipes) # send all recipes to the method gRandomRecipe and then it choses one randomly
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
+	obj = Recipes(db, current_user['user_id'], request.args)
+	recipes = obj.gRecipes() # get all recipes
+	response = obj.gRandomRecipes(recipes) # send all recipes to the method gRandomRecipe and then it choses one randomly
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/recipe_details/<int:recipe_id>', methods=['GET'])
-def g_recipe_details(recipe_id):
+@token_required
+def g_recipe_details(current_user, recipe_id):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Recipes(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gRecipeDetails(recipe_id)
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
+	obj = Recipes(db, current_user['user_id'], request.args)
+	response = obj.gRecipeDetails(recipe_id)
+	
 	return jsonify(response)
-
 
 
 
 
 # INGREDIENTS
 @app.route('/api/v1/ingredients/', methods=['GET'])
-def ingredients():
+@token_required
+def ingredients(current_user):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Ingredients(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gIngredients()
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Ingredients(db, current_user['user_id'], request.args)
+	response = obj.gIngredients()
 
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/ingredient_details/<ing_id>', methods=['GET'])
-def g_ingredients_details(ing_id):
+@token_required
+def g_ingredients_details(current_user, ing_id):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Ingredients(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gIngredientDetails(ing_id)
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Ingredients(db, current_user['user_id'], request.args)
+	response = obj.gIngredientDetails(ing_id)
 
 	return jsonify(response)
 
@@ -156,56 +193,44 @@ def g_ingredients_details(ing_id):
 
 # BEERS
 @app.route('/api/v1/beers/', methods=['GET'])
-def beers():
+@token_required
+def beers(current_user):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Beers()
-		response = obj.gBeers(request.args)
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Beers()
+	response = obj.gBeers(request.args)
 
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/beers/<int:beer_id>', methods=['GET'])
-def g_beer_details(beer_id):
+@token_required
+def g_beer_details(current_user, beer_id):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Beers()
-		response = obj.gBeerDetails(beer_id)
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Beers()
+	response = obj.gBeerDetails(beer_id)
 
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/beers/random', methods=['GET'])
-def random_beer():
+@token_required
+def random_beer(current_user):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Beers()
-		response = obj.gRandomBeer()
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Beers()
+	response = obj.gRandomBeer()
 
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/beers/<food_name>', methods=['GET'])
-def w_beers_better(food_name):
+@token_required
+def w_beers_better(current_user, food_name):
 
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', request.args.get('apiKey')):
-		obj = Beers()
-		response = obj.wBeersBetter(food_name)
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
+	obj = Beers()
+	response = obj.wBeersBetter(food_name)
 
 	return jsonify(response)
 
@@ -215,35 +240,31 @@ def w_beers_better(food_name):
 # *****************
 
 @app.route('/api/v1/create_recipe/', methods=['POST'])
-def create_recipe():
+@token_required
+def create_recipe(current_user):
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Recipes(db, sec.gUserId(data['apiKey']), data)
-		response = obj.cRecipe()	
+	obj = Recipes(db, current_user['user_id'], data)
+	response = obj.cRecipe()	
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 
 
 @app.route('/api/v1/create_ingredient/', methods=['POST'])
-def create_ingredient():
+@token_required
+def create_ingredient(current_user):
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Ingredients(db, sec.gUserId(data['apiKey']), data)
-		response = obj.cIngredient()	
+	obj = Ingredients(db, current_user['user_id'], data)
+	response = obj.cIngredient()	
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 
@@ -253,36 +274,34 @@ def create_ingredient():
 # ****************
 
 @app.route('/api/v1/update_recipe/<int:recipe_id>', methods=['PUT'])
-def update_recipe(recipe_id):
+@token_required
+def update_recipe(current_user, recipe_id):
+	
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Recipes(db, sec.gUserId(data['apiKey']), data)
-		response = obj.uRecipe(recipe_id)	
+	obj = Recipes(db, current_user['user_id'], data)
+	response = obj.uRecipe(recipe_id)	
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 
 
 
 @app.route('/api/v1/update_ingredient/<int:ing_id>', methods=['PUT'])
-def update_ingredient(ing_id):
+@token_required
+def update_ingredient(current_user, ing_id):
+	
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Ingredients(db, sec.gUserId(data['apiKey']), data)
-		response = obj.uIngredient(ing_id)	
+	obj = Ingredients(db, current_user['user_id'], data)
+	response = obj.uIngredient(ing_id)	
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 
@@ -292,36 +311,34 @@ def update_ingredient(ing_id):
 # *******************
 
 @app.route('/api/v1/delete_recipe/<int:recipe_id>', methods=['DELETE'])
-def delete_recipe(recipe_id):
+@token_required
+def delete_recipe(current_user, recipe_id):
+	
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Recipes(db, sec.gUserId(data['apiKey']))
-		response = obj.dRecipe(recipe_id)
+	obj = Recipes(db, current_user['user_id'])
+	response = obj.dRecipe(recipe_id)
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 
 
 
 @app.route('/api/v1/delete_ingredient/<int:ing_id>', methods=['DELETE'])
-def delete_ingredient(ing_id):
+@token_required
+def delete_ingredient(current_user, ing_id):
+	
+	if current_user['user_type'] != 'colab':
+		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
-	# call method to verify if apiKey exists
-	if sec.verify('api_key', data['apiKey']): 
-		obj = Ingredients(db, sec.gUserId(data['apiKey']))
-		response = obj.dIngredient(ing_id)
+	obj = Ingredients(db, current_user['user_id'])
+	response = obj.dIngredient(ing_id)
 	
-	else:
-		response = {'status': '400', 'message': 'invalid apiKey'}
-
 	return jsonify(response)
 
 

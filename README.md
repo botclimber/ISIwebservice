@@ -3,14 +3,7 @@
 
 ### Context
 
-This is an api service to manage a recipes db. The functionalities are:
-- CREATE recipe or Ingredient
-- UPDATE recipe or Ingredient
-- DELETE recipe or Ingredient
-- GET recipe or Ingredient:
-	- GET all
-	- GET one by id
-	- GET random (only in recipes)
+This is an api that provides info about recipes and ingredients, the user can create his own recipes and manage them, also this gives information about beers and it is related with recipes functionality. The beers information comes from an external api.
 
 ## Usage
 ### if locally
@@ -19,9 +12,14 @@ After clone it, install requirementes by running following command:
 pip3 install -r requirements.txt
 ```
 then just run:
+``` 
+python3 main.py (recomended)
+``` 
+or
 ```
-python3 main.py
+flask run
 ```
+
 and u can start using it. first page will be the api documentation:
 ![Image of api_doc](https://github.com/botclimber/ISIwebservice/blob/main/static/img/api_img.png)
 
@@ -34,9 +32,9 @@ and u can start using it. first page will be the api documentation:
 	- [ ] make it a litle more intuitive
 
 * Auth:
-	- [x] create and send user apiKey done
-	- [x] generic method to verifications done
-	- [ ] use JWT to auth
+	- [x] create user done
+	- [x] login done
+	- [x] use JWT to auth functionalities done
 
 * recipes:
 	- [x] get all recipes done

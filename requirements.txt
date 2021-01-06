@@ -5,6 +5,8 @@ numpy
 mysql.connector
 requests
 datetime
+pyjwt
+uuid
 
 ###### requirements with verison specified ######
 flask == 1.1.2

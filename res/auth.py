@@ -1,10 +1,14 @@
 import datetime
-import random
+
+import uuid
+from werkzeug.security import generate_password_hash, check_password_hash
 
 # Auth Managment
 class Auth:
 	
-	def __init__ (self, name, email, db):
+	
+
+	def __init__ (self, db, email = '', password = '', name = '', user_type = 'common'):
 		"""
 			Constructor of this object
 			:param name: user name
@@ -15,24 +19,14 @@ class Auth:
 		"""
 		self.name = name
 		self.email = email
+		self.password = password
+		self.user_type = user_type
+
 		self.db = db
 		self.cursor = db.cursor()
 
-	def cApiKey(self):
-		"""
-		Creat ApiKey
 
-		:param self: object with the all information for generate the apikey
-		:type self: object
-
-		:return: a string with the user apikey
-		"""
-		sample_letters = 'abcdefghijqlmnopqrstuvxz123456789'
-		result_str = ''.join((random.choice(sample_letters) for i in range(10)))
-
-		return result_str 		
-
-	def cUser(self, key):
+	def cUser(self):
 		"""
 		Creat and insert a new user in database
 
@@ -43,7 +37,10 @@ class Auth:
 		:return 200: if was insert with success
 		:return 201: if wasn't insert with success
 		"""
-		sql = "INSERT INTO Users(name,email,created_at,api_key)VALUES('{}','{}','{}','{}')".format(self.name, self.email, datetime.date.today(),key)
+		
+		hashed_password = generate_password_hash(self.password, method='sha256')
+
+		sql = "INSERT INTO Users(name,email,password,created_at,api_key,user_type)VALUES('{}','{}','{}','{}','{}','{}')".format(self.name, self.email,hashed_password,datetime.date.today(),str(uuid.uuid4()), self.user_type)
 		
 		try:
 			self.cursor.execute(sql)
@@ -52,8 +49,42 @@ class Auth:
 			return 200
 		except:
 			self.db.rollback()
-			return 201
+			
+		return 201
 		
+	def get_by_pi(self, public_id):
+		sql = "SELECT * FROM Users WHERE api_key = '{}'".format(public_id)
+		
+		try:
+			self.cursor.execute(sql)
+			r = self.cursor.fetchone()
+
+			return {'user_id': r[0], 'name': [1], 'email': r[2], 'user_type': r[6]}
+		
+		except:
+			self.db.rollback()
+
+		return 201
+
+
+	def get_user(self):
+		sql = "SELECT * FROM Users WHERE email = '{}'".format(self.email)
+
+		try:
+			self.cursor.execute(sql)
+			r = self.cursor.fetchone()
+			
+			return {'password':r[3], 'name':r[1], 'public_id': r[5], 'user_type': r[6]}
+
+		except:
+			self.db.rollback()
+	
+		return 201
+
+	def check_password(self, password):
+		if check_password_hash(password, self.password): return True
+		else: return False
+
 	def __del__(self):
 		"""
 		destoy this class
