@@ -18,6 +18,13 @@ config = {
 'database':'quickrecipes',
 }
 
+#config = {
+#'host':'localhost',
+#'user':'root',
+#'password':'',
+#'database':'quickrecipes',
+#}
+
 # Construct connection string
 try:
    db = mysql.connector.connect(**config)
@@ -101,13 +108,13 @@ def g_random_recipe():
 
 
 
-@app.route('/api/v1/recipe_details/', methods=['GET'])
-def g_recipe_details():
+@app.route('/api/v1/recipe_details/<int:recipe_id>', methods=['GET'])
+def g_recipe_details(recipe_id):
 
 	# call method to verify if apiKey exists
 	if sec.verify('api_key', request.args.get('apiKey')):
 		obj = Recipes(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gRecipeDetails()
+		response = obj.gRecipeDetails(recipe_id)
 	else:
 		response = {'status': '400', 'message': 'invalid apiKey'}
 
@@ -132,13 +139,13 @@ def ingredients():
 
 
 
-@app.route('/api/v1/ingredient_details/', methods=['GET'])
-def g_ingredients_details():
+@app.route('/api/v1/ingredient_details/<ing_id>', methods=['GET'])
+def g_ingredients_details(ing_id):
 
 	# call method to verify if apiKey exists
 	if sec.verify('api_key', request.args.get('apiKey')):
 		obj = Ingredients(db, sec.gUserId(request.args.get('apiKey')), request.args)
-		response = obj.gIngredientDetails()
+		response = obj.gIngredientDetails(ing_id)
 	else:
 		response = {'status': '400', 'message': 'invalid apiKey'}
 

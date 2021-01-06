@@ -56,13 +56,13 @@ class Recipes(Api_standard_service):
 
 
 	# gRecipeDetais - by id
-	def gRecipeDetails(self):
+	def gRecipeDetails(self, recipe_id):
 
 		data = {}
-		recipe = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(self.args.get('id_recipe'))
-		ing = "SELECT Ingredients.id_ingredient, Ingredients.nome_ingredient, Ingredients.calories, Ingredients.type, Ingredientes_Receita.amount FROM Ingredients, Ingredientes_Receita WHERE Ingredientes_Receita.id_ingredient = Ingredients.id_ingredient and Ingredientes_Receita.id_recipe = {}".format(self.args.get('id_recipe'))
+		recipe = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(recipe_id)
+		ing = "SELECT Ingredients.id_ingredient, Ingredients.nome_ingredient, Ingredients.calories, Ingredients.type, Ingredientes_Receita.amount FROM Ingredients, Ingredientes_Receita WHERE Ingredientes_Receita.id_ingredient = Ingredients.id_ingredient and Ingredientes_Receita.id_recipe = {}".format(recipe_id)
 
-		if not self.args.get('id_recipe'):
+		if not recipe_id:
 			data = {'status': 300, 'Message': 'parameter required [id_recipe]'}
 		else:
 			try:
@@ -188,12 +188,11 @@ class Recipes(Api_standard_service):
 
 	# dRecipe - delete recipe
 	def dRecipe(self, recipe_id):
-		
 		if self.db_ver('Recipe', 'id_recipe', recipe_id) == 0:		
 			return {'Status':'ERROR', 'Message': 'Recipe id doesnt exist in our DB'}
 
-		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = %s and id_user = %s"
-		sqlDIngredients = "DELETE FROM Ingredientes_Receita WHERE id_recipe = %s"	
+		sqlDRecipe = "DELETE FROM Recipe WHERE id_recipe = {} and id_user = {}".format(recipe_id, self.user_id)
+		sqlDIngredients = "DELETE FROM Ingredientes_Receita WHERE id_recipe = {}".format(recipe_id)		
 		
 		# get nutrition_id
 		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
@@ -202,10 +201,10 @@ class Recipes(Api_standard_service):
 		
 		# delete from table Nutrition
 		sqlDNutrition = "DELETE FROM Nutrition WHERE id_nutrition = {}".format(nutrition_id)
-
+		
 		try:
-			self.cursor.execute(sqlDIngredients, [recipe_id, self.user_id])	
-			self.cursor.execute(sqlDRecipe, recipe_id)	
+			self.cursor.execute(sqlDIngredients)	
+			self.cursor.execute(sqlDRecipe)
 			self.cursor.execute(sqlDNutrition)
 			
 			self.db.commit()
@@ -214,8 +213,6 @@ class Recipes(Api_standard_service):
 			self.db.rollback()			
 
 		return {'Status': 204, 'Message': 'Successful Deleted'}
-
-		
 
 
 	def __del__(self):

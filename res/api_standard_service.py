@@ -16,7 +16,7 @@ class Api_standard_service:
                 """
 
                 self.db = db
-                self.cursor = db.cursor()
+                self.cursor = db.cursor(buffered=True)
 
                 self.user_id = int(user_id)
                 self.args = args

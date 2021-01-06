@@ -10,7 +10,7 @@ class Beers:
 		api_url = self.api_url	
 	
 		for x in args:
-			if i is 1: api_url += "?{}={}".format(x, args.get(x))		
+			if i == 1: api_url += "?{}={}".format(x, args.get(x))		
 			elif i > 1: api_url += "&{}={}".format(x, args.get(x)) 
 			i += 1
 		

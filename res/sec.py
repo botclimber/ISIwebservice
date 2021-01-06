@@ -31,7 +31,7 @@ class Security:
 		except:
 			self.db.rollback()
 
-		return True if len(result) == 1 else False
+		return True if self.cursor.rowcount == 1 else False
 
 	def gUserId(self, apiKey):
 		"""

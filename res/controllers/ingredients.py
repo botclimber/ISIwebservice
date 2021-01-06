@@ -26,12 +26,12 @@ class Ingredients(Api_standard_service):
 
 
 
-	def gIngredientDetails(self):
-		if self.checkParam('ingredient_id') is False:
+	def gIngredientDetails(self, ing_id):
+		if not ing_id:
 			return {'status': 300, 'Message':'parameter required [ingredient_id]'}
 		
 		data = {'content':[], 'total_results': 0}
-		for x in self.args.get('ingredient_id').split(','):
+		for x in ing_id.split(','):
 			x = int(x)			
 	
 			ingredient = "SELECT * FROM Ingredients WHERE id_ingredient = {}".format(x)
