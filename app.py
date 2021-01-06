@@ -12,9 +12,9 @@ app = Flask(__name__)
 app.config['JSON_SORT_KEYS'] = False
 
 config = {
-'host':'localhost',
-'user':'root',
-'password':'',
+'host':'qkrecipes.mysql.database.azure.com',
+'user':'sorte@qkrecipes',
+'password':'wegotFlow21',
 'database':'quickrecipes',
 }
 
