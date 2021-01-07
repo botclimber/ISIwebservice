@@ -1,6 +1,6 @@
 import datetime
 
-import uuid
+import shortuuid
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Auth Managment
@@ -40,7 +40,7 @@ class Auth:
 		
 		hashed_password = generate_password_hash(self.password, method='sha256')
 
-		sql = "INSERT INTO Users(name,email,password,created_at,api_key,user_type)VALUES('{}','{}','{}','{}','{}','{}')".format(self.name, self.email,hashed_password,datetime.date.today(),str(uuid.uuid4()), self.user_type)
+		sql = "INSERT INTO Users(name,email,password,created_at,api_key,user_type)VALUES('{}','{}','{}','{}','{}','{}')".format(self.name, self.email,hashed_password,datetime.date.today(),str(shortuuid.uuid()), self.user_type)
 		
 		try:
 			self.cursor.execute(sql)
