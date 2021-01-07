@@ -9,29 +9,6 @@ class Security:
 		self.db = db
 		self.cursor = db.cursor()
 
-	def verify(self, field, value):
-		"""
-		verifys if apiKey exists in db
-
-		:param field: any field in database
-		:param value: the value to found in field
-		:type field: string
-		:type value: string
-		:return: return true if found apikey
-		:rtype: bool
-		"""
-
-		sql = "SELECT name FROM Users WHERE {} = '{}' ".format(field, value)
-		
-		try:
-			self.cursor.execute(sql)
-			result = self.cursor.fetchall()
-
-			
-		except:
-			self.db.rollback()
-
-		return True if self.cursor.rowcount == 1 else False
 
 	def gUserId(self, apiKey):
 		"""
