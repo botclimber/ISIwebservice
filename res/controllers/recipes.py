@@ -162,7 +162,7 @@ class Recipes(Api_standard_service):
 		nutritionFields = ['calories', 'fat', 'carbs', 'protein', 'fiber']	
 	
 		for x in recipeFields:
-			if x in self.args:
+			if x in self.args and self.args[x] != None:
 				sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} and id_user = {}".format(x, self.args[x], datetime.date.today(), recipe_id, self.user_id)
 				self.cursor.execute(sql)				
 			
@@ -171,7 +171,7 @@ class Recipes(Api_standard_service):
 		nutrition_id = self.cursor.fetchone()[0]
 		
 		for x in nutritionFields:
-			if x in self.args:
+			if x in self.args and self.args[x] != None:
 				sql = "UPDATE Nutrition SET {} = '{}' WHERE id_nutrition = {} ".format(x, self.args[x], nutrition_id)
 				self.cursor.execute(sql)
 

@@ -101,7 +101,7 @@ class Ingredients(Api_standard_service):
 		if (self.db_ver('Ingredients', 'id_ingredient', ing_id) == 1) and ( self.db_ver('Ingredients', 'nome_ingredient', name) == 0 ): 	
 			try:
 				for x in param:
-					if x in self.args:
+					if x in self.args and self.args[x] != None:
 						sql = "UPDATE Ingredients SET {} = '{}' WHERE id_ingredient = {} and id_user = {}".format(x, self.args[x], ing_id, self.user_id)
 						self.cursor.execute(sql)	
 						
