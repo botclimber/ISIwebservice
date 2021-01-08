@@ -1137,6 +1137,28 @@
 
     <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://quickrecipe.azurewebsites.net/api/v1/ingredient_details/3<br/>http://quickrecipe.azurewebsites.net/api/v1/ingredient_details/3,12,4 (more than one ingredient)</span></code></pre>
 
+    <h2>Parameter</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 20%">Field</th>
+          <th style="width: 20%">Type</th>
+          <th style="width: 20%">Description</th>
+          <th style="width: 20%">required</th>
+          <th style="width: 20%">default value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>lite</td>
+          <td>string</td>
+          <td>if wants to see what recipe has this ingredient</td>
+          <td>false</td>
+          <td>null</td>
+        </tr>
+
+      </tbody>
+    </table>
 
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
@@ -1346,7 +1368,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>name</td>
+            <td>nome_ingredient</td>
             <td>string</td>
             <td>ingredient name</td>
             <td>false</td>

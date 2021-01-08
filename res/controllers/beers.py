@@ -14,11 +14,8 @@ class Beers:
 			elif i > 1: api_url += "&{}={}".format(x, args.get(x)) 
 			i += 1
 				
+		return json.loads(requests.get(api_url).text)	
 
-		r = str(json.loads(requests.get(api_url).text))	
-		r = r[1:-1]
-		
-		return r
 	
 
 	def gBeerDetails(self, beer_id):
