@@ -242,8 +242,6 @@ def w_beers_better(current_user, food_name):
 @app.route('/api/v1/create_recipe/', methods=['POST'])
 @token_required
 def create_recipe(current_user):
-	if current_user['user_type'] != 'colab':
-		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
@@ -276,9 +274,6 @@ def create_ingredient(current_user):
 @app.route('/api/v1/update_recipe/<int:recipe_id>', methods=['PUT'])
 @token_required
 def update_recipe(current_user, recipe_id):
-	
-	if current_user['user_type'] != 'colab':
-		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	
@@ -313,9 +308,6 @@ def update_ingredient(current_user, ing_id):
 @app.route('/api/v1/delete_recipe/<int:recipe_id>', methods=['DELETE'])
 @token_required
 def delete_recipe(current_user, recipe_id):
-	
-	if current_user['user_type'] != 'colab':
-		return jsonify({'message': 'cannot perform that function'})
 	
 	data = request.get_json()
 	

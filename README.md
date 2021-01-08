@@ -29,14 +29,14 @@ and u can start using it. first page will be the api documentation:
 
 * api info:
 	- [x] api documentation complete
-	- [ ] update auth to return token instead	
+	- [x] update auth to return token instead	
 	- [ ] make it a litle more intuitive
 
 * Auth:
 	- [x] create user done
 	- [x] login done
 	- [x] use JWT to auth functionalities done
-	- [ ] give common user permission to manage recipes
+	- [x] give common user permission to manage recipes
 
 * recipes:
 	- [x] get all recipes done

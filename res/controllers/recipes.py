@@ -87,8 +87,7 @@ class Recipes(Api_standard_service):
 	
 	# get random recipe
 	def gRandomRecipes(self, recipes):
-		
-		return recipes['results'][random.randint(0, len(recipes) - 1)]			
+		return recipes['results'][random.randint(0, len(recipes['results']) - 1)]			
 
 
 
