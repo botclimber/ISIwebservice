@@ -13,9 +13,14 @@ class Beers:
 			if i == 1: api_url += "?{}={}".format(x, args.get(x))		
 			elif i > 1: api_url += "&{}={}".format(x, args.get(x)) 
 			i += 1
-				
-		return json.loads(requests.get(api_url).text)	
+		
+		r = json.loads(requests.get(api_url).text)	
+		
+		data = {'results': []}
+		for x in r:
+			data['results'].append({'id':x['id'], 'name':x['name'], 'first_brewed':x['first_brewed'], 'description': x['description'], 'image_url': x['image_url'], 'abv': x['abv'], 'ph': x['ph'], 'attenuation_level':x['attenuation_level'], 'volume':{'value':x['volume']['value'], 'unit':x['volume']['unit']}, 'food_pairing':x['food_pairing'], 'brewers_tips': x['brewers_tips']})
 
+		return data
 	
 
 	def gBeerDetails(self, beer_id):
