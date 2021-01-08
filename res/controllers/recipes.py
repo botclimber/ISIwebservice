@@ -160,28 +160,34 @@ class Recipes(Api_standard_service):
 
 		recipeFields = ['title', 'instructions', 'description', 'image_link', 'visible']
 		nutritionFields = ['calories', 'fat', 'carbs', 'protein', 'fiber']	
-	
-		for x in recipeFields:
-			if x in self.args and self.args[x] != None:
-				sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} and id_user = {}".format(x, self.args[x], datetime.date.today(), recipe_id, self.user_id)
-				self.cursor.execute(sql)				
-			
-		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
-		self.cursor.execute(gNutritionId)		
-		nutrition_id = self.cursor.fetchone()[0]
 		
-		for x in nutritionFields:
-			if x in self.args and self.args[x] != None:
-				sql = "UPDATE Nutrition SET {} = '{}' WHERE id_nutrition = {} ".format(x, self.args[x], nutrition_id)
-				self.cursor.execute(sql)
+		try:	
+			for x in recipeFields:
+				if x in self.args and self.args[x] != None:
+					sql = "UPDATE Recipe SET {} = '{}', updated_at = '{}'  WHERE id_recipe = {} and id_user = {}".format(x, self.args[x], datetime.date.today(), recipe_id, self.user_id)
+					self.cursor.execute(sql)				
+			
+			gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
+			self.cursor.execute(gNutritionId)		
+			nutrition_id = self.cursor.fetchone()[0]
+		
+			for x in nutritionFields:
+				if x in self.args and self.args[x] != None:
+					sql = "UPDATE Nutrition SET {} = '{}' WHERE id_nutrition = {} ".format(x, self.args[x], nutrition_id)
+					self.cursor.execute(sql)
 
-		if 'id_ingredients' in self.args:
-			for x in range(len(self.args['id_ingredients'])):
-				sql = "UPDATE Ingredientes_Receita SET amount = {} WHERE id_recipe = {} and id_ingredient = {}".format(self.args['amount'][x], recipe_id, self.args['id_ingredients'][x])
-				self.cursor.execute(sql)				
+			if 'id_ingredients' in self.args:
+				for x in range(len(self.args['id_ingredients'])):
+					sql = "UPDATE Ingredientes_Receita SET amount = {} WHERE id_recipe = {} and id_ingredient = {}".format(self.args['amount'][x], recipe_id, self.args['id_ingredients'][x])
+					self.cursor.execute(sql)				
 
-		self.db.commit()	
-		return {"Status": 200, "Message":"Recipe Updated ['recipe_id': {}, 'updated_at': {} ]".format(recipe_id, datetime.date.today())}
+			self.db.commit()	
+			return {"Status": 200, "Message":"Recipe Updated ['recipe_id': {}, 'updated_at': {} ]".format(recipe_id, datetime.date.today())}
+		
+		except:
+			self.db.rollback()
+
+		return {"Status":205, "Message": "No permission to update this recipe, cause not the owner"}
 
 
 

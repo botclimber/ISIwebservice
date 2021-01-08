@@ -37,7 +37,7 @@ class Ingredients(Api_standard_service):
 			ingredient = "SELECT * FROM Ingredients WHERE id_ingredient = {}".format(x)
 			recipes = "SELECT Recipe.id_recipe, title, description, image_link FROM Recipe, Ingredientes_Receita WHERE Ingredientes_Receita.id_ingredient = {} and Ingredientes_Receita.id_recipe = Recipe.id_recipe and (Recipe.visible = 1 or (Recipe.visible = 0 and Recipe.id_user = {}))".format(x, self.user_id)
 
-			try:
+			try:	
 				self.cursor.execute(ingredient)
 				ing = self.cursor.fetchone()			
 			
@@ -45,6 +45,7 @@ class Ingredients(Api_standard_service):
 					data['content'].append({'recipes':[], 'ingredient':{'id': ing[0], 'name': ing[2], 'calories': ing[3], 'type': ing[5], 'created_at': ing[4] }})
 				
 					if self.args.get('lite') != None and int(self.args.get('lite')) == 1:
+						return "entro"
 						self.cursor.execute(recipes)
 						recipesContent = self.cursor.fetchall()
 					
