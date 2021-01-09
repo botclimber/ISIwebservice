@@ -8,7 +8,7 @@ class Beers:
 	# standard format json sended as response	
 	def std_format(self, info):
 		
-		data = {'results': []}
+		data = {'results': [], 'nr_results': len(info)}
 		for x in info:
 			data['results'].append({'id':x['id'], 'name':x['name'], 'first_brewed':x['first_brewed'], 'description': x['description'], 'image_url': x['image_url'], 'abv': x['abv'], 'ph': x['ph'], 'attenuation_level':x['attenuation_level'], 'volume':{'value':x['volume']['value'], 'unit':x['volume']['unit']}, 'food_pairing':x['food_pairing'], 'brewers_tips': x['brewers_tips']})
 		
@@ -27,9 +27,9 @@ class Beers:
 			elif i > 1: api_url += "&{}={}".format(x, args.get(x)) 
 			i += 1
 		
-		return self.std_format(json.loads(requests.get(api_url).text))	
-				
-	
+		return self.std_format(json.loads(requests.get(api_url).text))		
+
+
 
 	def gBeerDetails(self, beer_id):
 		
