@@ -40,18 +40,16 @@ class Ingredients(Api_standard_service):
 			try:	
 				self.cursor.execute(ingredient)
 				ing = self.cursor.fetchone()			
-			
-				if self.cursor.rowcount > 0:
-					data['content'].append({'recipes':[], 'ingredient':{'id': ing[0], 'name': ing[2], 'calories': ing[3], 'type': ing[5], 'created_at': ing[4] }})
 				
-					if self.args.get('lite') != None and int(self.args.get('lite')) == 1:
-						return "entro"
-						self.cursor.execute(recipes)
-						recipesContent = self.cursor.fetchall()
+				if self.cursor.rowcount > 0:
+					data['content'].append({'ingredient':{'id': ing[0], 'name': ing[2], 'calories': ing[3], 'type': ing[5], 'created_at': ing[4] }, 'recipes': [] })
 					
-						if len(recipesContent) > 0:
-							for i in recipesContent:
-								data['content'][len(data['content'])-1]['recipes'].append({'recipe_id': i[0], 'title': i[1], 'description': i[2], 'image_link': i[3]})			
+					self.cursor.execute(recipes)
+					recipesContent = self.cursor.fetchall()
+						
+					if len(recipesContent) > 0:
+						for i in recipesContent:
+							data['content'][len(data['content'])-1]['recipes'].append({'recipe_id': i[0], 'title': i[1], 'description': i[2], 'image_link': i[3]})			
 				
 					data['total_results'] += 1
 			except:	

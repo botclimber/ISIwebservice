@@ -3,7 +3,20 @@ import requests, json
 class Beers:
 	
 	api_url = "https://api.punkapi.com/v2/beers"
-	
+
+
+	# standard format json sended as response	
+	def std_format(self, info):
+		
+		data = {'results': []}
+		for x in info:
+			data['results'].append({'id':x['id'], 'name':x['name'], 'first_brewed':x['first_brewed'], 'description': x['description'], 'image_url': x['image_url'], 'abv': x['abv'], 'ph': x['ph'], 'attenuation_level':x['attenuation_level'], 'volume':{'value':x['volume']['value'], 'unit':x['volume']['unit']}, 'food_pairing':x['food_pairing'], 'brewers_tips': x['brewers_tips']})
+		
+		return data
+
+
+
+
 	def gBeers(self, args = []):
 		
 		i = 0
@@ -14,26 +27,29 @@ class Beers:
 			elif i > 1: api_url += "&{}={}".format(x, args.get(x)) 
 			i += 1
 		
-		r = json.loads(requests.get(api_url).text)	
-		
-		data = {'results': []}
-		for x in r:
-			data['results'].append({'id':x['id'], 'name':x['name'], 'first_brewed':x['first_brewed'], 'description': x['description'], 'image_url': x['image_url'], 'abv': x['abv'], 'ph': x['ph'], 'attenuation_level':x['attenuation_level'], 'volume':{'value':x['volume']['value'], 'unit':x['volume']['unit']}, 'food_pairing':x['food_pairing'], 'brewers_tips': x['brewers_tips']})
-
-		return data
+		return self.std_format(json.loads(requests.get(api_url).text))	
+				
 	
 
 	def gBeerDetails(self, beer_id):
 		
 		api_url = "{}/{}".format(self.api_url, beer_id)
-		return json.loads(requests.get(api_url).text)
-	
+		r = json.loads(requests.get(api_url).text)
+		
+		data = {'results': []}
+		
+		for x in r:
+			data['results'].append({'id':x['id'], 'name':x['name'], 'first_brewed':x['first_brewed'], 'description': x['description'], 'image_url': x['image_url'], 'abv': x['abv'], 'ph': x['ph'], 'attenuation_level':x['attenuation_level'], 'method': x['method'], 'ingredients': x['ingredients'], 'volume':{'value':x['volume']['value'], 'unit':x['volume']['unit']}, 'food_pairing':x['food_pairing'], 'brewers_tips': x['brewers_tips']})
+		
+		
+		return data
+
 
 	
 	def gRandomBeer(self):
 		
 		api_url = "{}/random".format(self.api_url)
-		return json.loads(requests.get(api_url).text)
+		return self.std_format(json.loads(requests.get(api_url).text))
 
 
 
@@ -54,7 +70,7 @@ class Beers:
 		return data
 
 
-	
+
 
 	def __del__(self):
 		

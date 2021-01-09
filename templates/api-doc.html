@@ -1137,29 +1137,6 @@
 
     <pre class="prettyprint language-html prettyprinted" data-type="get" style=""><code><span class="pln">http://quickrecipe.azurewebsites.net/api/v1/ingredient_details/3<br/>http://quickrecipe.azurewebsites.net/api/v1/ingredient_details/3,12,4 (more than one ingredient)</span></code></pre>
 
-    <h2>Parameter</h2>
-    <table>
-      <thead>
-        <tr>
-          <th style="width: 20%">Field</th>
-          <th style="width: 20%">Type</th>
-          <th style="width: 20%">Description</th>
-          <th style="width: 20%">required</th>
-          <th style="width: 20%">default value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>lite</td>
-          <td>string</td>
-          <td>if wants to see what recipe has this ingredient</td>
-          <td>false</td>
-          <td>null</td>
-        </tr>
-
-      </tbody>
-    </table>
-
       <ul class="nav nav-tabs nav-tabs-examples">
           <li class="active">
             <a href="link">Success-Response:</a>
@@ -1172,14 +1149,27 @@
           {
             "content": [
               {
-                "recipes": [],
                 "ingredient": {
-                  "id": 2,
-                  "name": "banana",
-                  "calories": 56,
+                  "id": 3,
+                  "name": "Tomate",
+                  "calories": 12,
                   "type": "fruit",
-                  "created_at": "Wed, 23 Dec 2020 00:00:00 GMT"
-                }
+                  "created_at": "Sat, 02 Jan 2021 00:00:00 GMT"
+                },
+                "recipes": [
+                  {
+                    "recipe_id": 21,
+                    "title": "21 savage, runnin",
+                    "description": "-",
+                    "image_link": "-"
+                  },
+                  {
+                    "recipe_id": 25,
+                    "title": "teset de asdasd",
+                    "description": "None",
+                    "image_link": "123.jpg"
+                  }
+                ]
               }
             ],
             "total_results": 1
@@ -1753,164 +1743,155 @@
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
           <code>
-            [
-              {
-                "id": 12,
-                "name": "Arcade Nation",
-                "tagline": "Seasonal Black IPA.",
-                "first_brewed": "12/2015",
-                "description": "Running the knife-edge between an India Pale Ale and a Stout, this particular style is one we truly love. Black IPAs are a great showcase for the skill of our brew team, balancing so many complex and twisting flavours in the same moment. The citrus, mango and pine from the hops \u2013 three of our all-time favourites \u2013 play off against the roasty dryness from the malt bill at each and every turn.",
-                "image_url": "https://images.punkapi.com/v2/12.png",
-                "abv": 5.3,
-                "ibu": 60,
-                "target_fg": 1012,
-                "target_og": 1052,
-                "ebc": 200,
-                "srm": 100,
-                "ph": 4.2,
-                "attenuation_level": 77,
-                "volume": {
-                  "value": 20,
-                  "unit": "litres"
-                },
-                "boil_volume": {
-                  "value": 25,
-                  "unit": "litres"
-                },
-                "method": {
-                  "mash_temp": [
-                    {
+            {
+              "results": [
+                {
+                  "id": 12,
+                  "name": "Arcade Nation",
+                  "first_brewed": "12/2015",
+                  "description": "Running the knife-edge between an India Pale Ale and a Stout, this particular style is one we truly love. Black IPAs are a great showcase for the skill of our brew team, balancing so many complex and twisting flavours in the same moment. The citrus, mango and pine from the hops \u2013 three of our all-time favourites \u2013 play off against the roasty dryness from the malt bill at each and every turn.",
+                  "image_url": "https://images.punkapi.com/v2/12.png",
+                  "abv": 5.3,
+                  "ph": 4.2,
+                  "attenuation_level": 77,
+                  "method": {
+                    "mash_temp": [
+                      {
+                        "temp": {
+                          "value": 65,
+                          "unit": "celsius"
+                        },
+                        "duration": null
+                      }
+                    ],
+                    "fermentation": {
                       "temp": {
-                        "value": 65,
-                        "unit": "celsius"
-                      },
-                      "duration": null
-                    }
-                  ],
-                  "fermentation": {
-                    "temp": {
-                      "value": 19,
-                      "unit": "celsius"
-                    }
-                  },
-                  "twist": null
-                },
-                "ingredients": {
-                  "malt": [
-                    {
-                      "name": "Pale Ale",
-                      "amount": {
-                        "value": 3.13,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Caramalt",
-                      "amount": {
-                        "value": 0.25,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Crystal 150",
-                      "amount": {
-                        "value": 0.18,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Carafa Special Malt Type 1",
-                      "amount": {
-                        "value": 0.25,
-                        "unit": "kilograms"
-                      }
-                    }
-                  ],
-                  "hops": [
-                    {
-                      "name": "Simcoe",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
-                      },
-                      "add": "start",
-                      "attribute": "bitter"
-                    },
-                    {
-                      "name": "Simcoe",
-                      "amount": {
                         "value": 19,
-                        "unit": "grams"
-                      },
-                      "add": "middle",
-                      "attribute": "flavour"
+                        "unit": "celsius"
+                      }
                     },
-                    {
-                      "name": "Simcoe",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
+                    "twist": null
+                  },
+                  "ingredients": {
+                    "malt": [
+                      {
+                        "name": "Pale Ale",
+                        "amount": {
+                          "value": 3.13,
+                          "unit": "kilograms"
+                        }
                       },
-                      "add": "end",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Amarillo",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
+                      {
+                        "name": "Caramalt",
+                        "amount": {
+                          "value": 0.25,
+                          "unit": "kilograms"
+                        }
                       },
-                      "add": "end",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Citra",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
+                      {
+                        "name": "Crystal 150",
+                        "amount": {
+                          "value": 0.18,
+                          "unit": "kilograms"
+                        }
                       },
-                      "add": "end",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Simcoe",
-                      "amount": {
-                        "value": 62.5,
-                        "unit": "grams"
+                      {
+                        "name": "Carafa Special Malt Type 1",
+                        "amount": {
+                          "value": 0.25,
+                          "unit": "kilograms"
+                        }
+                      }
+                    ],
+                    "hops": [
+                      {
+                        "name": "Simcoe",
+                        "amount": {
+                          "value": 12.5,
+                          "unit": "grams"
+                        },
+                        "add": "start",
+                        "attribute": "bitter"
                       },
-                      "add": "dry hop",
-                      "attribute": "aroma"
-                    },
-                    {
-                      "name": "Amarillo",
-                      "amount": {
-                        "value": 62.5,
-                        "unit": "grams"
+                      {
+                        "name": "Simcoe",
+                        "amount": {
+                          "value": 19,
+                          "unit": "grams"
+                        },
+                        "add": "middle",
+                        "attribute": "flavour"
                       },
-                      "add": "dry hop",
-                      "attribute": "aroma"
-                    },
-                    {
-                      "name": "Citra",
-                      "amount": {
-                        "value": 62.5,
-                        "unit": "grams"
+                      {
+                        "name": "Simcoe",
+                        "amount": {
+                          "value": 12.5,
+                          "unit": "grams"
+                        },
+                        "add": "end",
+                        "attribute": "flavour"
                       },
-                      "add": "dry hop",
-                      "attribute": "aroma"
-                    }
+                      {
+                        "name": "Amarillo",
+                        "amount": {
+                          "value": 12.5,
+                          "unit": "grams"
+                        },
+                        "add": "end",
+                        "attribute": "flavour"
+                      },
+                      {
+                        "name": "Citra",
+                        "amount": {
+                          "value": 12.5,
+                          "unit": "grams"
+                        },
+                        "add": "end",
+                        "attribute": "flavour"
+                      },
+                      {
+                        "name": "Simcoe",
+                        "amount": {
+                          "value": 62.5,
+                          "unit": "grams"
+                        },
+                        "add": "dry hop",
+                        "attribute": "aroma"
+                      },
+                      {
+                        "name": "Amarillo",
+                        "amount": {
+                          "value": 62.5,
+                          "unit": "grams"
+                        },
+                        "add": "dry hop",
+                        "attribute": "aroma"
+                      },
+                      {
+                        "name": "Citra",
+                        "amount": {
+                          "value": 62.5,
+                          "unit": "grams"
+                        },
+                        "add": "dry hop",
+                        "attribute": "aroma"
+                      }
+                    ],
+                    "yeast": "Wyeast 1056 - American Ale\u2122"
+                  },
+                  "volume": {
+                    "value": 20,
+                    "unit": "litres"
+                  },
+                  "food_pairing": [
+                    "King prawn kebabs",
+                    "Halibut with a mango and tomato salad",
+                    "Mint chocloate ice cream"
                   ],
-                  "yeast": "Wyeast 1056 - American Ale\u2122"
-                },
-                "food_pairing": [
-                  "King prawn kebabs",
-                  "Halibut with a mango and tomato salad",
-                  "Mint chocloate ice cream"
-                ],
-                "brewers_tips": "Be as accurate as possible when weighing out your malts to ensure you strike the right balance.",
-                "contributed_by": "Sam Mason <samjbmason>"
-              }
-            ]
+                  "brewers_tips": "Be as accurate as possible when weighing out your malts to ensure you strike the right balance."
+                }
+              ]
+            }
           </code></pre>
         </div>
       </div>
@@ -1947,162 +1928,28 @@
         <div class="tab-pane active" id="success-examples-User-GetUser-0_0_0-0">
         <pre class="prettyprint language-json prettyprinted" data-type="json" style="">
           <code>
-            [
-              {
-                "id": 77,
-                "name": "Hobo Pop",
-                "tagline": "2013 Prototype Rye Pale Ale.",
-                "first_brewed": "11/2013",
-                "description": "Brewed with mountains of Wheat, Rye, Cara and Crystal malts, fermented with an American ale yeast and bittered with Amarillo & Centennial, this 4.2% beer is what happens if something classy like a European wheat beer goes to live in Vegas. Zingy citrus hops and a punchy bitterness bolster this low ABV pale.",
-                "image_url": "https://images.punkapi.com/v2/77.png",
-                "abv": 4.2,
-                "ibu": 50,
-                "target_fg": 1010,
-                "target_og": 1042,
-                "ebc": 30,
-                "srm": 15,
-                "ph": 4.4,
-                "attenuation_level": 76.2,
-                "volume": {
-                  "value": 20,
-                  "unit": "litres"
-                },
-                "boil_volume": {
-                  "value": 25,
-                  "unit": "litres"
-                },
-                "method": {
-                  "mash_temp": [
-                    {
-                      "temp": {
-                        "value": 65,
-                        "unit": "celsius"
-                      },
-                      "duration": 75
-                    }
-                  ],
-                  "fermentation": {
-                    "temp": {
-                      "value": 19,
-                      "unit": "celsius"
-                    }
+            {
+              "results": [
+                {
+                  "id": 266,
+                  "name": "Small Batch: Lemon Meringue Pie",
+                  "first_brewed": "2017",
+                  "description": "Brewed to a concept voted on at Craft Beer Rising, this one-off beer is an experimental brew which emulates the flavour of lemon meringue pie.",
+                  "image_url": null,
+                  "abv": 6.5,
+                  "ph": 4,
+                  "attenuation_level": 77,
+                  "volume": {
+                    "value": 20,
+                    "unit": "litres"
                   },
-                  "twist": null
-                },
-                "ingredients": {
-                  "malt": [
-                    {
-                      "name": "Extra Pale",
-                      "amount": {
-                        "value": 2.06,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Caramalt",
-                      "amount": {
-                        "value": 0.63,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Crystal 150",
-                      "amount": {
-                        "value": 0.25,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Wheat",
-                      "amount": {
-                        "value": 0.5,
-                        "unit": "kilograms"
-                      }
-                    },
-                    {
-                      "name": "Rye",
-                      "amount": {
-                        "value": 0.19,
-                        "unit": "kilograms"
-                      }
-                    }
+                  "food_pairing": [
+                    "Lemon Tart"
                   ],
-                  "hops": [
-                    {
-                      "name": "Centennial",
-                      "amount": {
-                        "value": 2.5,
-                        "unit": "grams"
-                      },
-                      "add": "start",
-                      "attribute": "bitter"
-                    },
-                    {
-                      "name": "Amarillo",
-                      "amount": {
-                        "value": 2.5,
-                        "unit": "grams"
-                      },
-                      "add": "start",
-                      "attribute": "bitter"
-                    },
-                    {
-                      "name": "Centennial",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
-                      },
-                      "add": "middle",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Amarillo",
-                      "amount": {
-                        "value": 12.5,
-                        "unit": "grams"
-                      },
-                      "add": "middle",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Centennial",
-                      "amount": {
-                        "value": 25,
-                        "unit": "grams"
-                      },
-                      "add": "end",
-                      "attribute": "flavour"
-                    },
-                    {
-                      "name": "Amarillo",
-                      "amount": {
-                        "value": 150,
-                        "unit": "grams"
-                      },
-                      "add": "dry hop",
-                      "attribute": "aroma"
-                    },
-                    {
-                      "name": "Centennial",
-                      "amount": {
-                        "value": 125,
-                        "unit": "grams"
-                      },
-                      "add": "dry hop",
-                      "attribute": "aroma"
-                    }
-                  ],
-                  "yeast": "Wyeast 1056 - American Ale\u2122"
-                },
-                "food_pairing": [
-                  "Mozzarella and tomato baked chicken",
-                  "Spiced shrimp salad",
-                  "Strawberry cheescake"
-                ],
-                "brewers_tips": "Add the rye and wheat malt evenly through the mash.",
-                "contributed_by": "Ali Skinner <AliSkinner>"
-              }
-            ]
+                  "brewers_tips": "Dextrin Malt adds sugars to your wort that the yeast are unable to ferment. If you want a sweetness remaining in your beer, add a little of this but not too much!!!"
+                }
+              ]
+            }
           </code></pre>
         </div>
       </div>

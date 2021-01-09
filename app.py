@@ -182,8 +182,8 @@ def ingredients(current_user):
 @app.route('/api/v1/ingredient_details/<ing_id>', methods=['GET'])
 @token_required
 def g_ingredients_details(current_user, ing_id):
-
-	obj = Ingredients(db, current_user['user_id'], request.args)
+		
+	obj = Ingredients(db, current_user['user_id'])
 	response = obj.gIngredientDetails(ing_id)
 
 	return jsonify(response)
