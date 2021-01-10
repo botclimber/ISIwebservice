@@ -120,8 +120,24 @@ class Ingredients(Api_standard_service):
 
 
 	def dIngredient(self, ing_id):
-		pass
 		
+		if self.db_ver('Ingredients', 'id_ingredient', ing_id) == 0:
+			return {'status': 'ERROR', 'Message': 'Ingredient id not found!'}
+
+		delIng = "DELETE FROM Ingredients WHERE id_ingredient = {}".format(ing_id)
+		delIngRec = "DELETE FROM Ingredientes_Receita WHERE id_ingredient = {}".format(ing_id)			
+		
+		try:
+			self.cursor.execute(delIngRec)
+			self.cursor.execute(delIng)
+	
+			self.db.commit()
+
+		except:
+			self.db.rollback()	
+	
+		return {'status': 204, 'Message': 'Ingredient deleted!'}
+
 
 
 	def __del__(self):

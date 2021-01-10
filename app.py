@@ -332,8 +332,6 @@ def delete_ingredient(current_user, db, ing_id):
 	if current_user['user_type'] != 'colab':
 		return jsonify({'message': 'cannot perform that function'})
 	
-	data = request.get_json()
-	
 	obj = Ingredients(db, current_user['user_id'])
 	response = obj.dIngredient(ing_id)
 	
