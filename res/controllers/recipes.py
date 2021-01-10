@@ -57,6 +57,9 @@ class Recipes(Api_standard_service):
 
 	# gRecipeDetais - by id
 	def gRecipeDetails(self, recipe_id):
+		
+		if self.db_ver('Recipe', 'id_recipe', recipe_id) == 0:
+			return {'status': 301, 'Message': 'Recipe id not found!'}		
 
 		data = {}
 		recipe = "SELECT Recipe.title, Recipe.description, Recipe.instructions, Recipe.image_link, Recipe.visible, Nutrition.calories, Nutrition.carbs, Nutrition.fat, Nutrition.protein, Nutrition.fiber FROM Recipe, Nutrition WHERE Recipe.id_nutrition = Nutrition.id_nutrition and Recipe.id_recipe = {}".format(recipe_id)

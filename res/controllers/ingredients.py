@@ -54,7 +54,10 @@ class Ingredients(Api_standard_service):
 					data['total_results'] += 1
 			except:	
 				data = {'Status': 301, 'Message': 'unable to fetch data'}
-	
+		
+		if data['total_results'] == 0:
+			return {'status': 'ERROR', 'Message': 'no data found for this request!'}
+			
 		return data
 
 
