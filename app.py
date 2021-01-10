@@ -5,7 +5,6 @@ import jwt
 import datetime
 
 from functools import wraps
-from res.sec import Security
 from res.auth import Auth
 from res.controllers.recipes import Recipes
 from res.controllers.ingredients import Ingredients
@@ -29,18 +28,21 @@ config = {
 #'database':'quickrecipes',
 #}
 
-# Construct connection string
-try:
-   db = mysql.connector.connect(**config)
-except mysql.connector.Error as err:
-  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
-  elif err.errno == errorcode.ER_BAD_DB_ERROR:
-    print("Database does not exist")
-  else:
-    print(err)
 
-sec = Security(db)
+# Construct connection string
+def db_connection():
+	try:
+		db = mysql.connector.connect(**config)	
+		print('Connection status: {}'.format(db.is_connected()))
+
+	except mysql.connector.Error as err:
+  		if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+   			print("Something is wrong with the user name or password")
+  		elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    			print("Database does not exist")
+  		else:
+    			print(err)
+	return db
 
 
 """
@@ -64,6 +66,7 @@ def index():
 # CREATE USER
 @app.route('/api/v1/auth/', methods=['POST'])
 def auth():
+	db = db_connection()
 	"""
 
 	:param name: user name
@@ -80,7 +83,8 @@ def auth():
 
 # LOGIN 
 @app.route('/api/v1/login/')
-def login():
+def login():	
+	db = db_connection()
 	
 	auth = request.authorization
 	if not auth or not auth.username or not auth.password:
@@ -103,6 +107,7 @@ def login():
 def token_required(f):
 	@wraps(f)
 	def decorated(*args, **kwargs):
+		db = db_connection()
 		token = None
 		
 		if 'x-access-token' in request.headers:
@@ -117,7 +122,7 @@ def token_required(f):
 		except:
 			return jsonify({'message': 'Token is invalid'}), 401
 
-		return f(current_user, *args, **kwargs)
+		return f(current_user, db, *args, **kwargs)
 	
 	return decorated
 
@@ -134,7 +139,7 @@ def token_required(f):
 """
 @app.route('/api/v1/recipes/', methods=['GET'])
 @token_required
-def recipes(current_user):
+def recipes(current_user, db):
 
 	obj = Recipes(db, current_user['user_id'], request.args)
 	response = obj.gRecipes()
@@ -146,7 +151,7 @@ def recipes(current_user):
 
 @app.route('/api/v1/rand_recipes/', methods=['GET'])
 @token_required
-def g_random_recipe(current_user):
+def g_random_recipe(current_user, db):
 
 	obj = Recipes(db, current_user['user_id'], request.args)
 	recipes = obj.gRecipes() # get all recipes
@@ -157,7 +162,7 @@ def g_random_recipe(current_user):
 
 @app.route('/api/v1/recipe_details/<int:recipe_id>', methods=['GET'])
 @token_required
-def g_recipe_details(current_user, recipe_id):
+def g_recipe_details(current_user, db, recipe_id):
 
 	obj = Recipes(db, current_user['user_id'], request.args)
 	response = obj.gRecipeDetails(recipe_id)
@@ -170,7 +175,7 @@ def g_recipe_details(current_user, recipe_id):
 # INGREDIENTS
 @app.route('/api/v1/ingredients/', methods=['GET'])
 @token_required
-def ingredients(current_user):
+def ingredients(current_user, db):
 
 	obj = Ingredients(db, current_user['user_id'], request.args)
 	response = obj.gIngredients()
@@ -181,7 +186,7 @@ def ingredients(current_user):
 
 @app.route('/api/v1/ingredient_details/<ing_id>', methods=['GET'])
 @token_required
-def g_ingredients_details(current_user, ing_id):
+def g_ingredients_details(current_user, db, ing_id):
 		
 	obj = Ingredients(db, current_user['user_id'])
 	response = obj.gIngredientDetails(ing_id)
@@ -194,7 +199,7 @@ def g_ingredients_details(current_user, ing_id):
 # BEERS
 @app.route('/api/v1/beers/', methods=['GET'])
 @token_required
-def beers(current_user):
+def beers(current_user, db):
 
 	obj = Beers()
 	response = obj.gBeers(request.args)
@@ -205,7 +210,7 @@ def beers(current_user):
 
 @app.route('/api/v1/beers/<int:beer_id>', methods=['GET'])
 @token_required
-def g_beer_details(current_user, beer_id):
+def g_beer_details(current_user, db, beer_id):
 
 	obj = Beers()
 	response = obj.gBeerDetails(beer_id)
@@ -216,7 +221,7 @@ def g_beer_details(current_user, beer_id):
 
 @app.route('/api/v1/beers/random', methods=['GET'])
 @token_required
-def random_beer(current_user):
+def random_beer(current_user, db):
 
 	obj = Beers()
 	response = obj.gRandomBeer()
@@ -227,7 +232,7 @@ def random_beer(current_user):
 
 @app.route('/api/v1/beers/<food_name>', methods=['GET'])
 @token_required
-def w_beers_better(current_user, food_name):
+def w_beers_better(current_user, db, food_name):
 
 	obj = Beers()
 	response = obj.wBeersBetter(food_name)
@@ -241,7 +246,7 @@ def w_beers_better(current_user, food_name):
 
 @app.route('/api/v1/create_recipe/', methods=['POST'])
 @token_required
-def create_recipe(current_user):
+def create_recipe(current_user, db):
 	
 	data = request.get_json()
 	
@@ -254,7 +259,8 @@ def create_recipe(current_user):
 
 @app.route('/api/v1/create_ingredient/', methods=['POST'])
 @token_required
-def create_ingredient(current_user):
+def create_ingredient(current_user, db):
+	
 	if current_user['user_type'] != 'colab':
 		return jsonify({'message': 'cannot perform that function'})
 	
@@ -273,7 +279,7 @@ def create_ingredient(current_user):
 
 @app.route('/api/v1/update_recipe/<int:recipe_id>', methods=['PUT'])
 @token_required
-def update_recipe(current_user, recipe_id):
+def update_recipe(current_user, db, recipe_id):
 	
 	data = request.get_json()
 	
@@ -287,7 +293,7 @@ def update_recipe(current_user, recipe_id):
 
 @app.route('/api/v1/update_ingredient/<int:ing_id>', methods=['PUT'])
 @token_required
-def update_ingredient(current_user, ing_id):
+def update_ingredient(current_user, db, ing_id):
 	
 	if current_user['user_type'] != 'colab':
 		return jsonify({'message': 'cannot perform that function'})
@@ -307,7 +313,7 @@ def update_ingredient(current_user, ing_id):
 
 @app.route('/api/v1/delete_recipe/<int:recipe_id>', methods=['DELETE'])
 @token_required
-def delete_recipe(current_user, recipe_id):
+def delete_recipe(current_user, db, recipe_id):
 	
 	data = request.get_json()
 	
@@ -321,7 +327,7 @@ def delete_recipe(current_user, recipe_id):
 
 @app.route('/api/v1/delete_ingredient/<int:ing_id>', methods=['DELETE'])
 @token_required
-def delete_ingredient(current_user, ing_id):
+def delete_ingredient(current_user, db, ing_id):
 	
 	if current_user['user_type'] != 'colab':
 		return jsonify({'message': 'cannot perform that function'})

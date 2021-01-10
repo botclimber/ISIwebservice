@@ -201,7 +201,8 @@ class Recipes(Api_standard_service):
 		
 		# get nutrition_id
 		gNutritionId = "SELECT id_nutrition FROM Recipe WHERE id_recipe = {}".format(recipe_id)
-		self.cursor.execute(gNutritionId)		
+		try: self.cursor.execute(gNutritionId)		
+		except: self.db.rollback()
 		nutrition_id = self.cursor.fetchone()[0]
 		
 		# delete from table Nutrition

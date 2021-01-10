@@ -1,8 +1,8 @@
 import requests
 
 url = "http://127.0.0.1:5000/api/v1/create_recipe/"
-obj = {'title': 'teset de teste', 'instructions': '21 smiles', 'id':[2,3], 'amount':[12,28]}
+obj = {'title': 'travis scott', 'instructions': 'astroworld is lit', 'id':[4,5,2], 'amount':[12,28,5]}
 
-r = requests.post(url, json = obj, headers = {'x-access-token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI3M2ZmNWFhMy0yMTI4LTQxOTctOTliYS04MjJkNWRiNWQ4OWYiLCJleHAiOjE2MDk5NTIyOTh9.cRwW4tEBQHAW1-l7Qv7CYYlo9Hv8m0U70nyW-NvtiBo'})
+r = requests.post(url, json = obj, headers = {'x-access-token':'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiI3YWNjOGRiMy1hOWViLTQxNGQtYjQ5Yi05M2NmNGY4MGVkZDEiLCJleHAiOjE2MTAyNDgwNDZ9.17dLzoXSaDgbZwYkfJKZ-mlbmCqzzfcBOaQ7zvHeFfs'})
 
 print(r.text)
