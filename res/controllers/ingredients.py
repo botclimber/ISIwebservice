@@ -1,4 +1,4 @@
-from res.api_standard_service import Api_standard_service
+from res.controllers.api_standard_service import Api_standard_service
 import datetime
 
 class Ingredients(Api_standard_service):
